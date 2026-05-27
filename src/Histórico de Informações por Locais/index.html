@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Alerta Já</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+
+    <div class="logo-area">
+
+    <img src="/docs/images/alertaja.png" alt="Logo Alerta Já">
+
+</div>
+
+    <nav>
+        <a href="/HomePage.html">Início</a>
+        <a href="#">Alertas</a>
+        <a href="#">Mapa</a>
+        <a href="#">Histórico</a>
+        <a href="#">Configurações</a>
+    </nav>
+
+</header>
+
+<!-- MENU LATERAL -->
+
+<main>
+
+<aside>
+
+    <h2>FILTROS</h2>
+
+    <h3>Tipo de risco</h3>
+
+
+    <div class="filtro-item">
+    <input type="checkbox" id="chuva">
+    <label for="chuva">Chuva Forte</label>
+</div>
+
+<div class="filtro-item">
+    <input type="checkbox" id="enchente">
+    <label for="enchente">Enchente</label>
+</div>
+
+<div class="filtro-item">
+    <input type="checkbox" id="deslizamento">
+    <label for="deslizamento">Deslizamento</label>
+</div>
+
+</aside>
+
+
+ <!-- CONTEÚDO PRINCIPAL -->
+    <section>
+
+        <h2>Histórico de informações por locais</h2>
+
+        <div class="busca">
+
+    <input type="text" id="campo-busca" placeholder="Buscar cidade ou bairro">
+
+    <button id="botao-busca">Pesquisar</button>
+
+</div>
+
+<div id="lista-alertas"></div>
+
+    </section>
+
+
+</main>
+
+
+<div id="modal" class="modal">
+
+    <div class="modal-conteudo">
+
+        <span id="fechar-modal">&times;</span>
+
+        <div id="conteudo-modal"></div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
