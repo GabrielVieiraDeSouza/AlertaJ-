@@ -1,39 +1,22 @@
-const alertas = [
-    {
-        tipo: "Enchente",
-        cidade: "Contagem - MG",
-        bairro: "Eldorado",
-        data: "10/04/2026",
-        descricao: "Risco de alagamento em áreas baixas.",
-        status: "Encerrado",
-        risco: "alto"
-    },
-
-    {
-        tipo: "Deslizamento",
-        cidade: "Belo Horizonte - MG",
-        bairro: "Barreiro",
-        data: "02/05/2026",
-        descricao: "Solo instável após chuvas intensas.",
-        status: "Monitoramento",
-        risco: "medio"
-    },
-
-    {
-    tipo: "Chuva Forte",
-    cidade: "Ribeirão das Neves - MG",
-    bairro: "Justinópolis",
-    data: "28/03/2026",
-    descricao: "Chuvas intensas na região.",
-    status: "Encerrado",
-    risco: "baixo"
-}
-];
+let alertas = [];
 
 const lista = document.getElementById("lista-alertas");
 const campoBusca = document.getElementById("campo-busca");
-
 const botaoBusca = document.getElementById("botao-busca");
+
+fetch("http://localhost:3000/alertas")
+    .then(function(resposta) {
+        return resposta.json();
+    })
+    .then(function(dados) {
+        console.log(dados);
+
+        alertas = dados;
+        mostrarAlertas(alertas);
+    })
+    .catch(function(erro) {
+        console.log("Erro ao buscar alertas:", erro);
+    });
 
 function mostrarAlertas(listaAlertas) {
 
@@ -74,7 +57,6 @@ function mostrarAlertas(listaAlertas) {
 
 }
 
-mostrarAlertas(alertas);
 
 botaoBusca.addEventListener("click", function() {
 
