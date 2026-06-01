@@ -94,47 +94,71 @@ const filtroEnchente = document.getElementById("enchente");
 
 const filtroDeslizamento = document.getElementById("deslizamento");
 
+const filtroSeca = document.getElementById("seca");
+
+const filtroTempestade = document.getElementById("tempestade");
+
+const filtroDataInicio = document.getElementById("data-inicio");
+
+const filtroDataFim = document.getElementById("data-fim");
+
+const filtroCidade = document.getElementById("filtro-cidade");
+
 function aplicarFiltros() {
 
     let alertasFiltrados = [];
 
     if(filtroChuva.checked) {
-
         alertasFiltrados.push("Chuva Forte");
-
     }
 
     if(filtroEnchente.checked) {
-
         alertasFiltrados.push("Enchente");
-
     }
 
     if(filtroDeslizamento.checked) {
-
         alertasFiltrados.push("Deslizamento");
-
     }
+
+    if(filtroSeca.checked) {
+        alertasFiltrados.push("Seca");
+    }
+
+    if(filtroTempestade.checked) {
+        alertasFiltrados.push("Tempestade");
+    }
+
+    const dataInicio = filtroDataInicio.value;
+    const dataFim = filtroDataFim.value;
+    const cidadeDigitada = filtroCidade.value.trim().toLowerCase();
 
     const resultados = alertas.filter(function(alerta) {
 
-        return alertasFiltrados.includes(alerta.tipo);
+        const tipoOk =
+            alertasFiltrados.length === 0 ||
+            alertasFiltrados.includes(alerta.tipo);
 
+        const dataAlerta = new Date(alerta.data);
+
+        const inicioOk =
+            dataInicio === "" ||
+            dataAlerta >= new Date(dataInicio);
+
+        const fimOk =
+            dataFim === "" ||
+            dataAlerta <= new Date(dataFim);
+
+        const cidadeOk =
+            cidadeDigitada === "" ||
+            alerta.cidade.toLowerCase().includes(cidadeDigitada);
+
+        return tipoOk && inicioOk && fimOk && cidadeOk;
     });
 
-    if(alertasFiltrados.length === 0) {
-
-        mostrarAlertas(alertas);
-
-    }
-
-    else {
-
-        mostrarAlertas(resultados);
-
-    }
-
+    mostrarAlertas(resultados);
 }
+
+
 
 filtroChuva.addEventListener("change", aplicarFiltros);
 
@@ -142,6 +166,15 @@ filtroEnchente.addEventListener("change", aplicarFiltros);
 
 filtroDeslizamento.addEventListener("change", aplicarFiltros);
 
+filtroSeca.addEventListener("change", aplicarFiltros);
+
+filtroTempestade.addEventListener("change", aplicarFiltros);
+
+filtroDataInicio.addEventListener("change", aplicarFiltros);
+
+filtroDataFim.addEventListener("change", aplicarFiltros);
+
+filtroCidade.addEventListener("input", aplicarFiltros);
 
 const modal = document.getElementById("modal");
 
