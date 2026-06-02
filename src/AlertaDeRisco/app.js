@@ -6,13 +6,26 @@ form.addEventListener("submit", async function(event){
 
     event.preventDefault();
 
+const risco = document.getElementById("nivel").value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+
+const bairro = document.getElementById("bairro").value;
+
     const alerta = {
-        titulo: document.getElementById("titulo").value,
-        cidade: document.getElementById("cidade").value,
-        nivel: document.getElementById("nivel").value,
-        descricao: document.getElementById("descricao").value,
-        data: document.getElementById("data").value
-    };
+    titulo: document.getElementById("titulo").value,
+    cidade: document.getElementById("cidade").value,
+    bairro : bairro ? bairro : "Não informado",
+    descricao: document.getElementById("descricao").value,
+    data: document.getElementById("data").value,
+
+    tipo: document.getElementById("titulo").value,
+    bairro: "Não informado",
+    status: "Monitoramento",
+     nivel: risco,
+    risco: risco
+};
 
     if(idEditando === null){
 
@@ -68,7 +81,7 @@ async function carregarAlertas(){
 
                 <p><strong>Cidade:</strong> ${alerta.cidade}</p>
 
-                <p><strong>Nível:</strong> ${alerta.nivel}</p>
+                <p><strong>Nível:</strong> ${alerta.nivel || alerta.risco}</p>
 
                 <p><strong>Descrição:</strong> ${alerta.descricao}</p>
 
@@ -125,6 +138,8 @@ function editarAlerta(id, titulo, cidade, nivel, descricao, data){
     document.getElementById("nivel").value = nivel;
     document.getElementById("descricao").value = descricao;
     document.getElementById("data").value = data;
+    
 
     idEditando = id;
 }
+
