@@ -3,6 +3,10 @@ let alertas = [];
 const lista = document.getElementById("lista-alertas");
 const campoBusca = document.getElementById("campo-busca");
 const botaoBusca = document.getElementById("botao-busca");
+const totalAlertas = document.getElementById("total-alertas");
+const totalAlto = document.getElementById("total-alto");
+const totalMedio = document.getElementById("total-medio");
+const totalBaixo = document.getElementById("total-baixo");
 
 fetch("http://localhost:3000/alertas")
     .then(function(resposta) {
@@ -18,11 +22,30 @@ fetch("http://localhost:3000/alertas")
         console.log("Erro ao buscar alertas:", erro);
     });
 
+    function atualizarEstatisticas(listaAlertas) {
+
+    totalAlertas.textContent = listaAlertas.length;
+
+    totalAlto.textContent = listaAlertas.filter(function(alerta) {
+        return alerta.risco === "alto";
+    }).length;
+
+    totalMedio.textContent = listaAlertas.filter(function(alerta) {
+        return alerta.risco === "medio";
+    }).length;
+
+    totalBaixo.textContent = listaAlertas.filter(function(alerta) {
+        return alerta.risco === "baixo";
+    }).length;
+}
+
 function mostrarAlertas(listaAlertas) {
 
     lista.innerHTML = "";
 
     for(let i = 0; i < listaAlertas.length; i++) {
+
+        atualizarEstatisticas(listaAlertas);
 
         lista.innerHTML += `
             <div class="card-alerta">
@@ -102,8 +125,6 @@ const filtroDataInicio = document.getElementById("data-inicio");
 
 const filtroDataFim = document.getElementById("data-fim");
 
-const filtroCidade = document.getElementById("filtro-cidade");
-
 const filtroRisco = document.getElementById("filtro-risco");
 
 function aplicarFiltros() {
@@ -134,7 +155,6 @@ function aplicarFiltros() {
 
     const dataInicio = filtroDataInicio.value;
     const dataFim = filtroDataFim.value;
-    const cidadeDigitada = filtroCidade.value.trim().toLowerCase();
 
     const resultados = alertas.filter(function(alerta) {
 
@@ -154,11 +174,8 @@ const riscoOk = riscoSelecionado === "" || alerta.risco === riscoSelecionado;
             dataFim === "" ||
             dataAlerta <= new Date(dataFim);
 
-        const cidadeOk =
-            cidadeDigitada === "" ||
-            alerta.cidade.toLowerCase().includes(cidadeDigitada);
 
-        return tipoOk && inicioOk && fimOk && cidadeOk && riscoOk;
+        return tipoOk && inicioOk && fimOk && riscoOk;
     });
 
     mostrarAlertas(resultados);
@@ -179,8 +196,6 @@ filtroTempestade.addEventListener("change", aplicarFiltros);
 filtroDataInicio.addEventListener("change", aplicarFiltros);
 
 filtroDataFim.addEventListener("change", aplicarFiltros);
-
-filtroCidade.addEventListener("input", aplicarFiltros);
 
 filtroRisco.addEventListener("change", aplicarFiltros);
 

@@ -77,12 +77,6 @@
 </div>
 
 <div class="filtro-item">
-    <label for="filtro-cidade">Cidade:</label>
-    <input type="text" id="filtro-cidade" placeholder="Digite a cidade">
-</div>
-
-
-<div class="filtro-item">
     <label for="filtro-risco">Nível de risco:</label>
     <select id="filtro-risco">
         <option value="">Todos</option>
@@ -90,6 +84,36 @@
         <option value="medio">Médio</option>
         <option value="baixo">Baixo</option>
     </select>
+</div>
+
+<h2 class="titulo-estatisticas">
+    Estatísticas do Histórico
+</h2>
+
+<!-- ESTATISTICAS DE ALERTAS -->
+
+<div class="estatisticas">
+
+    <div class="card-estatistica">
+        <strong>Total:</strong>
+        <span id="total-alertas">0</span>
+    </div>
+
+    <div class="card-estatistica">
+        <strong>Alto:</strong>
+        <span id="total-alto">0</span>
+    </div>
+
+    <div class="card-estatistica">
+        <strong>Médio:</strong>
+        <span id="total-medio">0</span>
+    </div>
+
+    <div class="card-estatistica">
+        <strong>Baixo:</strong>
+        <span id="total-baixo">0</span>
+    </div>
+
 </div>
 
 </aside>
@@ -107,6 +131,7 @@
     <button id="botao-busca">Pesquisar</button>
 
 </div>
+
 
 <div id="lista-alertas"></div>
 
