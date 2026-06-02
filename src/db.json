@@ -164,28 +164,52 @@
     }
   ],
   "alertas": [
-    {
-      "titulo": "Seca Extrema no Nordeste",
-      "descricao": "Reservatórios entram em nível crítico.",
-      "categoria": "Seca",
-      "imagem": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200",
-      "id": "u22cs6l0m64"
-    },
-    {
-      "titulo": "Deslizamento Interdita Rodovia no RJ",
-      "descricao": "Trecho foi bloqueado após queda de barreira.",
-      "categoria": "Deslizamento",
-      "imagem": "https://images.unsplash.com/photo-1527489377706-5bf97e608852?q=80&w=1200",
-      "id": "B0RJ8REFH1M"
-    },
-    {
-      "titulo": "Tempestade Atinge São Paulo",
-      "descricao": "Ventos fortes causaram quedas de árvores.",
-      "categoria": "Tempestade",
-      "imagem": "https://images.unsplash.com/photo-1500674425229-f692875b0ab7?q=80&w=1200",
-      "id": "jPuo-VDj3PM"
-    }
-  ],
+  {
+    "titulo": "Seca Extrema no Nordeste",
+    "descricao": "Reservatórios entram em nível crítico.",
+    "categoria": "Seca",
+    "imagem": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200",
+    "id": "u22cs6l0m64",
+
+    "tipo": "Seca",
+    "estado": "MG",
+    "cidade": "Montes Claros",
+    "bairro": "Centro",
+    "data": "20-04-2026",
+    "status": "Monitoramento",
+    "risco": "alto"
+  },
+  {
+    "titulo": "Deslizamento Interdita Rodovia no RJ",
+    "descricao": "Trecho foi bloqueado após queda de barreira.",
+    "categoria": "Deslizamento",
+    "imagem": "https://images.unsplash.com/photo-1527489377706-5bf97e608852?q=80&w=1200",
+    "id": "B0RJ8REFH1M",
+
+    "tipo": "Deslizamento",
+    "estado": "RJ",
+    "cidade": "Rio de Janeiro",
+    "bairro": "Jacarepaguá",
+    "data": "22-04-2026",
+    "status": "Encerrado",
+    "risco": "medio"
+  },
+  {
+    "titulo": "Tempestade Atinge São Paulo",
+    "descricao": "Ventos fortes causaram quedas de árvores.",
+    "categoria": "Tempestade",
+    "imagem": "https://images.unsplash.com/photo-1500674425229-f692875b0ab7?q=80&w=1200",
+    "id": "jPuo-VDj3PM",
+
+    "tipo": "Tempestade",
+    "estado": "SP",
+    "cidade": "São Paulo",
+    "bairro": "Mooca",
+    "data": "24-04-2026",
+    "status": "Monitoramento",
+    "risco": "baixo"
+  }
+],
   "clima": [
     {
       "cidadeId": 0,

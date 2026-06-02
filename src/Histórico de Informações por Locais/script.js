@@ -1,45 +1,51 @@
-const alertas = [
-    {
-        tipo: "Enchente",
-        cidade: "Contagem - MG",
-        bairro: "Eldorado",
-        data: "10/04/2026",
-        descricao: "Risco de alagamento em áreas baixas.",
-        status: "Encerrado",
-        risco: "alto"
-    },
-
-    {
-        tipo: "Deslizamento",
-        cidade: "Belo Horizonte - MG",
-        bairro: "Barreiro",
-        data: "02/05/2026",
-        descricao: "Solo instável após chuvas intensas.",
-        status: "Monitoramento",
-        risco: "medio"
-    },
-
-    {
-    tipo: "Chuva Forte",
-    cidade: "Ribeirão das Neves - MG",
-    bairro: "Justinópolis",
-    data: "28/03/2026",
-    descricao: "Chuvas intensas na região.",
-    status: "Encerrado",
-    risco: "baixo"
-}
-];
+let alertas = [];
 
 const lista = document.getElementById("lista-alertas");
 const campoBusca = document.getElementById("campo-busca");
-
 const botaoBusca = document.getElementById("botao-busca");
+const totalAlertas = document.getElementById("total-alertas");
+const totalAlto = document.getElementById("total-alto");
+const totalMedio = document.getElementById("total-medio");
+const totalBaixo = document.getElementById("total-baixo");
+
+fetch("http://localhost:3000/alertas")
+    .then(function(resposta) {
+        return resposta.json();
+    })
+    .then(function(dados) {
+        console.log(dados);
+
+        alertas = dados;
+        mostrarAlertas(alertas);
+    })
+    .catch(function(erro) {
+        console.log("Erro ao buscar alertas:", erro);
+    });
+
+    function atualizarEstatisticas(listaAlertas) {
+
+    totalAlertas.textContent = listaAlertas.length;
+
+    totalAlto.textContent = listaAlertas.filter(function(alerta) {
+        return alerta.risco === "alto";
+    }).length;
+
+    totalMedio.textContent = listaAlertas.filter(function(alerta) {
+        return alerta.risco === "medio";
+    }).length;
+
+    totalBaixo.textContent = listaAlertas.filter(function(alerta) {
+        return alerta.risco === "baixo";
+    }).length;
+}
 
 function mostrarAlertas(listaAlertas) {
 
     lista.innerHTML = "";
 
     for(let i = 0; i < listaAlertas.length; i++) {
+
+        atualizarEstatisticas(listaAlertas);
 
         lista.innerHTML += `
             <div class="card-alerta">
@@ -74,7 +80,6 @@ function mostrarAlertas(listaAlertas) {
 
 }
 
-mostrarAlertas(alertas);
 
 botaoBusca.addEventListener("click", function() {
 
@@ -112,47 +117,71 @@ const filtroEnchente = document.getElementById("enchente");
 
 const filtroDeslizamento = document.getElementById("deslizamento");
 
+const filtroSeca = document.getElementById("seca");
+
+const filtroTempestade = document.getElementById("tempestade");
+
+const filtroDataInicio = document.getElementById("data-inicio");
+
+const filtroDataFim = document.getElementById("data-fim");
+
+const filtroRisco = document.getElementById("filtro-risco");
+
 function aplicarFiltros() {
 
     let alertasFiltrados = [];
 
     if(filtroChuva.checked) {
-
         alertasFiltrados.push("Chuva Forte");
-
     }
 
     if(filtroEnchente.checked) {
-
         alertasFiltrados.push("Enchente");
-
     }
 
     if(filtroDeslizamento.checked) {
-
         alertasFiltrados.push("Deslizamento");
-
     }
+
+    if(filtroSeca.checked) {
+        alertasFiltrados.push("Seca");
+    }
+
+    if(filtroTempestade.checked) {
+        alertasFiltrados.push("Tempestade");
+    }
+
+    const riscoSelecionado = filtroRisco.value;
+
+    const dataInicio = filtroDataInicio.value;
+    const dataFim = filtroDataFim.value;
 
     const resultados = alertas.filter(function(alerta) {
 
-        return alertasFiltrados.includes(alerta.tipo);
+const riscoOk = riscoSelecionado === "" || alerta.risco === riscoSelecionado;
 
+        const tipoOk =
+            alertasFiltrados.length === 0 ||
+            alertasFiltrados.includes(alerta.tipo);
+
+        const dataAlerta = new Date(alerta.data);
+
+        const inicioOk =
+            dataInicio === "" ||
+            dataAlerta >= new Date(dataInicio);
+
+        const fimOk =
+            dataFim === "" ||
+            dataAlerta <= new Date(dataFim);
+
+
+        return tipoOk && inicioOk && fimOk && riscoOk;
     });
 
-    if(alertasFiltrados.length === 0) {
-
-        mostrarAlertas(alertas);
-
-    }
-
-    else {
-
-        mostrarAlertas(resultados);
-
-    }
-
+    mostrarAlertas(resultados);
 }
+
+
 
 filtroChuva.addEventListener("change", aplicarFiltros);
 
@@ -160,6 +189,15 @@ filtroEnchente.addEventListener("change", aplicarFiltros);
 
 filtroDeslizamento.addEventListener("change", aplicarFiltros);
 
+filtroSeca.addEventListener("change", aplicarFiltros);
+
+filtroTempestade.addEventListener("change", aplicarFiltros);
+
+filtroDataInicio.addEventListener("change", aplicarFiltros);
+
+filtroDataFim.addEventListener("change", aplicarFiltros);
+
+filtroRisco.addEventListener("change", aplicarFiltros);
 
 const modal = document.getElementById("modal");
 
