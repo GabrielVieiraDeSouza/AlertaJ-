@@ -1,4 +1,42 @@
 {
+  "alerta": [
+
+    {
+      "id": 1,
+      "titulo": "Risco de chuva na área do Minas Shopping",
+      "descricao": "Defesa Civil alerta para possibilidade de alagamentos na região.",
+      "categoria": "Chuva",
+      "imagem": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=600",
+      "link": "minasshopping.html"
+    },
+
+    {
+      "id": 2,
+      "titulo": "Ventos fortes atingem Belo Horizonte",
+      "descricao": "Rajadas derrubaram árvores e afetaram o trânsito.",
+      "categoria": "Vendaval",
+      "imagem": "https://images.unsplash.com/photo-1500674425229-f692875b0ab7?q=80&w=1200",
+      "link": "ventos.html"
+    },
+
+    {
+      "id": 3,
+      "titulo": "Alerta de enchente na Pampulha",
+      "descricao": "Aumento do nível da lagoa preocupa moradores.",
+      "categoria": "Enchente",
+      "imagem": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1200",
+      "link": "pampulha.html"
+    },
+
+    {
+      "id": 4,
+      "titulo": "Deslizamento interdita avenida em Contagem",
+      "descricao": "Equipes trabalham na remoção de terra e monitoramento.",
+      "categoria": "Deslizamento",
+      "imagem": "https://images.unsplash.com/photo-1527489377706-5bf97e608852?q=80&w=1200",
+      "link": "deslizamento.html"
+    }
+  ],
   "categorias": [
     {
       "id": "1",
