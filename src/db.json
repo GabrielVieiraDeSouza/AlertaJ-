@@ -175,7 +175,7 @@
     "estado": "MG",
     "cidade": "Montes Claros",
     "bairro": "Centro",
-    "data": "20-04-2026",
+    "data": "2026-04-20",
     "status": "Monitoramento",
     "risco": "alto"
   },
@@ -190,7 +190,7 @@
     "estado": "RJ",
     "cidade": "Rio de Janeiro",
     "bairro": "Jacarepaguá",
-    "data": "22-04-2026",
+    "data": "2026-04-22",
     "status": "Encerrado",
     "risco": "medio"
   },
@@ -205,7 +205,7 @@
     "estado": "SP",
     "cidade": "São Paulo",
     "bairro": "Mooca",
-    "data": "24-04-2026",
+    "data": "2026-04-24",
     "status": "Monitoramento",
     "risco": "baixo"
   }
