@@ -104,6 +104,8 @@ const filtroDataFim = document.getElementById("data-fim");
 
 const filtroCidade = document.getElementById("filtro-cidade");
 
+const filtroRisco = document.getElementById("filtro-risco");
+
 function aplicarFiltros() {
 
     let alertasFiltrados = [];
@@ -128,11 +130,15 @@ function aplicarFiltros() {
         alertasFiltrados.push("Tempestade");
     }
 
+    const riscoSelecionado = filtroRisco.value;
+
     const dataInicio = filtroDataInicio.value;
     const dataFim = filtroDataFim.value;
     const cidadeDigitada = filtroCidade.value.trim().toLowerCase();
 
     const resultados = alertas.filter(function(alerta) {
+
+const riscoOk = riscoSelecionado === "" || alerta.risco === riscoSelecionado;
 
         const tipoOk =
             alertasFiltrados.length === 0 ||
@@ -152,7 +158,7 @@ function aplicarFiltros() {
             cidadeDigitada === "" ||
             alerta.cidade.toLowerCase().includes(cidadeDigitada);
 
-        return tipoOk && inicioOk && fimOk && cidadeOk;
+        return tipoOk && inicioOk && fimOk && cidadeOk && riscoOk;
     });
 
     mostrarAlertas(resultados);
@@ -175,6 +181,8 @@ filtroDataInicio.addEventListener("change", aplicarFiltros);
 filtroDataFim.addEventListener("change", aplicarFiltros);
 
 filtroCidade.addEventListener("input", aplicarFiltros);
+
+filtroRisco.addEventListener("change", aplicarFiltros);
 
 const modal = document.getElementById("modal");
 
