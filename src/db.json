@@ -2,23 +2,23 @@
   "categorias": [
     {
       "id": "1",
-      "nome": "Tecnologia"
+      "nome": "Deslizes de Terra"
     },
     {
       "id": "2",
-      "nome": "Política"
+      "nome": "Chuva"
     },
     {
       "id": "3",
-      "nome": "Esportes"
+      "nome": "Seca"
     },
     {
       "id": "4",
-      "nome": "Saúde"
+      "nome": "Tempestade"
     },
     {
       "id": "5",
-      "nome": "Entretenimento"
+      "nome": "Incendios"
     }
   ],
   "cidades": [
@@ -95,8 +95,8 @@
   "noticias": [
     {
       "id": "1",
-      "titulo": "Nova tecnologia revoluciona o mercado",
-      "resumo": "Uma nova inovação promete mudar a forma como usamos dispositivos.",
+      "titulo": "Deslize de Terra em Contagem deixa 57 mortos",
+      "resumo": "Um deslize de Tera em contagem perto da região do Itau Power Shopping deixou 57 mortos e outros 12 feridos",
       "conteudo": {
         "Texto1": "",
         "Texto2": ""
@@ -118,8 +118,8 @@
     },
     {
       "id": "2",
-      "titulo": "Terremotos de alta magnite em Santa Luzia",
-      "resumo": "Teremotos em Santa luzia",
+      "titulo": "Enchentes em Santa Luzias deixam 12 pessoas desabrigadas",
+      "resumo": "Enchentes no dia 12/03/2025 deixam 12 pessoas desabrigadas em Luzia, prefeitura informa estar prestando apoio aos afetados",
       "conteudo": {
         "Texto1": "",
         "Texto2": ""
@@ -128,10 +128,10 @@
         "1": "",
         "2": ""
       },
-      "categoriaId": 1,
-      "dataPublicacao": "2026-04-20",
+      "categoriaId": 2,
+      "dataPublicacao": "12/03/2025",
       "Creditos": {
-        "Nome": "João Silva Junior",
+        "Nome": "Roberto Brandão",
         "Profissão": "Jornalista Senior",
         "Socials": {
           "Linkedin": "",
@@ -141,8 +141,8 @@
     },
     {
       "id": "3",
-      "titulo": "Enchente em Xique Xique Bahia",
-      "resumo": "Enchentes em Xique Xique Bahia",
+      "titulo": "Risco de Tempestades em Uberaba",
+      "resumo": "Prefeitura alerta ao risco de Tempestades pelos proximos 7 duas na região de Uberaba",
       "conteudo": {
         "Texto1": "",
         "Texto2": ""
@@ -151,10 +151,10 @@
         "1": "",
         "2": ""
       },
-      "categoriaId": 1,
+      "categoriaId": 4,
       "dataPublicacao": "2026-04-20",
       "Creditos": {
-        "Nome": "João Silva Pedro",
+        "Nome": "Luiz Fernando",
         "Profissão": "Jornalista",
         "Socials": {
           "Linkedin": "",
