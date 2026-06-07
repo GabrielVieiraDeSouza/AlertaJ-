@@ -12,14 +12,44 @@
 
 <body class="p-4">
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalNoticias">
-        Abrir Notícias
-    </button>
+    <header class="container-fluid border-bottom py-3 mb-4 bg-secondary-subtle">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3 ms-5 text-start">
+                    <div class="">
+                        <a><img src="/docs/images/alertaja.png" alt="Logo Alerta Já" class="ps-5 imageHeader"></a>
+                    </div>
+                </div>
+
+                <div class="col-6 justify-content-center d-flex align-items-center">
+                    <div class="input-group">
+                        <input type="search" class="form-control rounded"
+                            placeholder="Digite aqui uma notícia que você deseja procurar" id="ProcurarNoticia"
+                            aria-label="Search" />
+                    </div>
+
+                    <div class="dropdown ps-1">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownCategorias"
+                            data-bs-toggle="dropdown" aria-expanded="false" data-id-selecionado="">
+                            Todas as categorias
+                        </button>
+                        <ul class="dropdown-menu" id="listaCategorias">
+                            <li><a class="dropdown-item active" href="#" data-id="">Todas as categorias</a></li>
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-primary ms-1" data-bs-toggle="modal" data-bs-target="#modalNoticias">
+                        Pesquisar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
 
     <div class="modal" id="modalNoticias" tabindex="-1" aria-labelledby="modalNoticiasLabel" aria-hidden="true">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
-
                 <div class="modal-topo">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Fechar">
                         ✕ Fechar Noticias
@@ -32,7 +62,6 @@
                     <div id="listaNoticias"></div>
                     <div id="msgVazio">Nenhuma notícia encontrada.</div>
                 </div>
-
             </div>
         </div>
     </div>
