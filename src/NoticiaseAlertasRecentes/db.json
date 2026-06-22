@@ -1,0 +1,45 @@
+{
+  "alertas": [
+
+    {
+      "id": 1,
+      "titulo": "Risco de chuva na área do Minas Shopping",
+      "descricao": "Defesa Civil alerta para chuvas intensas na região do Minas Shopping, com possibilidade de alagamentos, trânsito lento e transtornos para comerciantes e moradores.",
+      "conteudo": "A Defesa Civil de Belo Horizonte emitiu um alerta preventivo para a região do Minas Shopping devido à previsão de chuvas fortes nas próximas horas. O volume de água esperado pode causar alagamentos em vias próximas, dificultando o trânsito e aumentando o risco de acidentes. Equipes municipais estão monitorando a situação e recomendam que a população evite áreas sujeitas a enxurradas e acompanhe os comunicados oficiais.",
+      "categoria": "Chuva",
+      "imagem": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=600",
+      "link": "detalhes.html"
+    },
+
+    {
+      "id": 2,
+      "titulo": "Ventos fortes atingem Belo Horizonte",
+      "descricao": "Rajadas de vento superiores a 60 km/h provocaram quedas de árvores, interrupções no fornecimento de energia e congestionamentos em diversos bairros.",
+      "conteudo": "Fortes rajadas de vento atingiram Belo Horizonte durante a tarde, causando transtornos em diferentes regiões da cidade. Árvores caíram sobre vias movimentadas e alguns bairros registraram interrupções temporárias no fornecimento de energia elétrica. A Defesa Civil orienta a população a evitar estacionar veículos próximos a árvores e estruturas metálicas, além de permanecer em locais seguros durante novos episódios de ventania.",
+      "categoria": "Vendaval",
+      "imagem": "https://images.unsplash.com/photo-1500674425229-f692875b0ab7?q=80&w=1200",
+      "link": "detalhes.html"
+    },
+
+    {
+      "id": 3,
+      "titulo": "Alerta de enchente na Pampulha",
+      "descricao": "O aumento do nível da Lagoa da Pampulha preocupa autoridades e moradores, que acompanham o risco de transbordamento em áreas próximas.",
+      "conteudo": "Após vários dias de chuva, o nível da Lagoa da Pampulha apresentou elevação significativa. Técnicos da prefeitura realizam monitoramento constante e estudam medidas preventivas para minimizar possíveis impactos em áreas residenciais próximas. Moradores foram orientados a permanecer atentos aos alertas oficiais e evitar regiões sujeitas a alagamentos durante períodos de chuva intensa.",
+      "categoria": "Enchente",
+      "imagem": "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1200",
+      "link": "detalhes.html"
+    },
+
+    {
+      "id": 4,
+      "titulo": "Deslizamento interdita avenida em Contagem",
+      "descricao": "Um deslizamento de terra bloqueou parcialmente uma importante avenida da cidade, exigindo intervenção imediata das equipes de emergência.",
+      "conteudo": "As fortes chuvas registradas nos últimos dias contribuíram para um deslizamento de terra que atingiu uma avenida de grande circulação em Contagem. Equipes da Defesa Civil, Corpo de Bombeiros e Secretaria de Obras trabalham na remoção dos materiais e na avaliação das encostas próximas. O trânsito na região sofreu alterações e motoristas estão sendo orientados a utilizar rotas alternativas até a conclusão dos trabalhos.",
+      "categoria": "Deslizamento",
+      "imagem": "https://images.unsplash.com/photo-1527489377706-5bf97e608852?q=80&w=1200",
+      "link": "detalhes.html"
+    }
+
+  ]
+}
