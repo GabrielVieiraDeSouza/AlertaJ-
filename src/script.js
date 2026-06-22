@@ -1,4 +1,4 @@
-const api = "http://localhost:3000/alertas";
+const api = "http://localhost:3000/alerta";
 
 const listaAlertas = document.getElementById("lista-alertas");
 

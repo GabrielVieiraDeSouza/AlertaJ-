@@ -130,7 +130,7 @@ p{
 
 <script>
 
-const api = "http://localhost:3000/alertas";
+const api = "http://localhost:3000/alerta";
 
 const params = new URLSearchParams(window.location.search);
 
@@ -141,6 +141,8 @@ async function carregarNoticia(){
     const resposta = await fetch(`${api}/${id}`);
 
     const noticia = await resposta.json();
+
+    const dados = noticia.alerta;
 
     document.getElementById("noticia").innerHTML = `
 
@@ -161,7 +163,7 @@ async function carregarNoticia(){
             </p>
 
             <a
-                href="index.html"
+                href="HomePage.html"
                 class="btn btn-primary btn-voltar"
             >
                 Voltar
