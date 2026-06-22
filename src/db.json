@@ -85,7 +85,7 @@
   "configuracoesUsuario": [
     {
       "id": "1",
-      "usuarioId": 927202,
+      "usuarioId": "927202",
       "temaEscuro": true,
       "notificacoesAtivas": true,
       "regiaoPadrao": "Minas Gerais",
@@ -1086,6 +1086,5 @@
       },
       "id": "hN9ra2LL9Po"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }
