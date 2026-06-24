@@ -1,6 +1,14 @@
 body {
-  background-color: #d9d9d9;
+  background-color: #f4f4f4;
   font-family: 'Poppins', sans-serif;
+}
+
+
+.headernovo{
+  background-color: #1e3a5f;
+  color: white;
+
+  
 }
 
 /* CAROUSEL */
@@ -27,28 +35,6 @@ body {
   font-size:1.1rem;
 }
 
-@media(max-width:768px){
-
-.carousel-img{
-  height:280px;
-}
-
-.carousel-caption{
-  padding:15px;
-  bottom:15px;
-}
-
-.carousel-caption h2{
-  font-size:1.3rem;
-  margin-bottom:-10px;
-}
-
-.carousel-caption p{
-  font-size:.9rem;
-  margin-bottom:-10px;
-}
-
-}
 
 /* CARD DE DESTAQUE */
 
@@ -196,3 +182,37 @@ body {
 /* Css da parte do minihub de temperaturas */
 /* Css da parte do minihub de temperaturas */
 /* Css da parte do minihub de temperaturas */
+
+footer{
+            margin-top: 60px;
+            background-color: #173A67;
+            text-align: center;
+            padding: 25px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+/*Responsividade */
+
+@media(max-width:768px){
+
+.carousel-img{
+  height:280px;
+}
+
+.carousel-caption{
+  padding:15px;
+  bottom:15px;
+}
+
+.carousel-caption h2{
+  font-size:1.3rem;
+  margin-bottom:-10px;
+}
+
+.carousel-caption p{
+  font-size:.9rem;
+  margin-bottom:-10px;
+}
+
+}
