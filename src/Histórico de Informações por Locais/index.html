@@ -42,7 +42,7 @@
 
     <h3>Tipo de risco</h3>
 
-
+<div class="grupo-filtro">
     <div class="filtro-item">
     <input type="checkbox" id="chuva">
     <label for="chuva">Chuva Forte</label>
@@ -68,6 +68,10 @@
     <label for="tempestade">Tempestade</label>
 </div>
 
+</div>
+
+<h3>Período</h3>
+<div class="grupo-filtro">
 <div class="filtro-item">
     <label for="data-inicio">Data início:</label>
     <input type="date" id="data-inicio">
@@ -77,9 +81,12 @@
     <label for="data-fim">Data fim:</label>
     <input type="date" id="data-fim">
 </div>
+</div>
 
+<h3>Nível de risco</h3>
+<div class="grupo-filtro">
 <div class="filtro-item">
-    <label for="filtro-risco">Nível de risco:</label>
+    
     <select id="filtro-risco">
         <option value="">Todos</option>
         <option value="alto">Alto</option>
@@ -87,9 +94,10 @@
         <option value="baixo">Baixo</option>
     </select>
 </div>
+</div>
 
 <h2 class="titulo-estatisticas">
-    Estatísticas do Histórico
+    📊 Estatísticas do Histórico
 </h2>
 
 <!-- ESTATISTICAS DE ALERTAS -->
@@ -124,7 +132,7 @@
  <!-- CONTEÚDO PRINCIPAL -->
     <section>
 
-        <h2>Histórico de informações por locais</h2>
+        <h2 class="titulo-pagina">📍 Histórico de Informações por Local</h2>
 
         <div class="busca">
 
