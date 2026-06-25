@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Alerta Já</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -25,7 +25,6 @@
     <nav>
         <a href="/src/HomePage.html">Início</a>
         <a href="#">Alertas</a>
-        <a href="#">Mapa</a>
         <a href="#">Histórico</a>
         <a href="#">Configurações</a>
     </nav>
@@ -42,7 +41,7 @@
 
     <h3>Tipo de risco</h3>
 
-
+<div class="grupo-filtro">
     <div class="filtro-item">
     <input type="checkbox" id="chuva">
     <label for="chuva">Chuva Forte</label>
@@ -68,18 +67,25 @@
     <label for="tempestade">Tempestade</label>
 </div>
 
-<div class="filtro-item">
-    <label for="data-inicio">Data início:</label>
+</div>
+
+<h3>Período</h3>
+<div class="grupo-filtro">
+<div class="filtro-data">
+    <label for="data-inicio">início:</label>
     <input type="date" id="data-inicio">
 </div>
 
-<div class="filtro-item">
-    <label for="data-fim">Data fim:</label>
+<div class="filtro-data">
+    <label for="data-fim">Fim:</label>
     <input type="date" id="data-fim">
 </div>
+</div>
 
+<h3>Nível de risco</h3>
+<div class="grupo-filtro">
 <div class="filtro-item">
-    <label for="filtro-risco">Nível de risco:</label>
+    
     <select id="filtro-risco">
         <option value="">Todos</option>
         <option value="alto">Alto</option>
@@ -87,9 +93,10 @@
         <option value="baixo">Baixo</option>
     </select>
 </div>
+</div>
 
 <h2 class="titulo-estatisticas">
-    Estatísticas do Histórico
+    📊 Estatísticas do Histórico
 </h2>
 
 <!-- ESTATISTICAS DE ALERTAS -->
@@ -124,7 +131,7 @@
  <!-- CONTEÚDO PRINCIPAL -->
     <section>
 
-        <h2>Histórico de informações por locais</h2>
+        <h2 class="titulo-pagina">📍 Histórico de Informações por Local</h2>
 
         <div class="busca">
 
