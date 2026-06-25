@@ -6,12 +6,13 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:'Montserrat', sans-serif;
 }
 
 body{
-    background:#F4F4F4;
-    color:#000;
+    font-family:'Montserrat', sans-serif;
+    background-color:#f4f4f4;
+    color:#222;
 }
 
 /* =========================
@@ -47,15 +48,16 @@ header{
     gap:30px;
 }
 
-.menu-nav a{
-    text-decoration:none;
+nav a{
     color:white;
+    text-decoration:none;
+    margin-left:20px;
     font-weight:600;
-    transition:.3s;
+    transition:.2s;
 }
 
-.menu-nav a:hover{
-    color:#d7e6f7;
+nav a:hover{
+    color:#FDB913;
 }
 
 /* =========================
@@ -230,7 +232,7 @@ main{
     top:0;
 
     background:#F8F8F8;
-    
+
     padding:10px 0;
 }
 
