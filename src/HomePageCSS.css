@@ -1,198 +1,559 @@
+/* ==========================================================================
+   HomePageCSS.css — Alerta Já
+   Escrito do zero a partir do HTML atual (header, carrossel, lista de
+   alertas, minihub de cidades, modal e footer), com pontos de quebra
+   para celular, tablet e desktop.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap');
+
+:root {
+    /* Paleta */
+    --color-bg: #f3f5f8;
+    --color-surface: #ffffff;
+    --color-border: #dde1e6;
+    --color-text: #1f2933;
+    --color-text-muted: #5b6470;
+
+    --color-primary: #1d4ed8;
+    --color-primary-dark: #163aa3;
+    --color-danger: #d62828;
+
+    --color-footer-bg: #1f2933;
+    --color-footer-text: #cbd2d9;
+
+    /* Tipografia */
+    --font-display: "Poppins", "Segoe UI", Arial, sans-serif;
+    --font-body: "Inter", "Segoe UI", Arial, sans-serif;
+
+    /* Espaçamento */
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1.25rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --shadow-sm: 0 1px 3px rgba(20, 24, 31, 0.08);
+    --shadow-md: 0 6px 18px rgba(20, 24, 31, 0.10);
+    --transition: 0.18s ease;
+}
+
+/* ==========================================================================
+   Reset / base
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-  background-color: #d9d9d9;
-  font-family: 'Poppins', sans-serif;
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
 }
 
-/* CAROUSEL */
-
-.carousel-img{
-  height:500px;
-  object-fit:cover;
-  filter:brightness(60%);
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--color-text);
+    margin: 0;
 }
 
-.carousel-caption{
-  background:rgba(0,0,0,.55);
-  padding:25px;
-  border-radius:15px;
-  bottom:40px;
+/* Trava de segurança: nenhuma <img> sem tamanho explícito pode mais
+   estourar o layout (foi essa a causa do ícone de engrenagem gigante) */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
-.carousel-caption h2{
-  font-size:2.2rem;
-  font-weight:bold;
+a {
+    transition: color var(--transition), background-color var(--transition);
 }
 
-.carousel-caption p{
-  font-size:1.1rem;
+button {
+    font-family: var(--font-body);
+    cursor: pointer;
 }
 
-@media(max-width:768px){
-
-.carousel-img{
-  height:280px;
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
-.carousel-caption{
-  padding:15px;
-  bottom:15px;
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+header {
+    background-color: var(--color-surface) !important;
+    border-bottom: 1px solid var(--color-border) !important;
 }
 
-.carousel-caption h2{
-  font-size:1.3rem;
-  margin-bottom:-10px;
+.imageHeader {
+    height: 38px;
+    width: auto;
 }
 
-.carousel-caption p{
-  font-size:.9rem;
-  margin-bottom:-10px;
+/* O BOTÃO (área clicável/hit-box) */
+#ConfiguracaoBotao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 50%;
+    transition: background-color var(--transition), transform var(--transition);
 }
 
+#ConfiguracaoBotao:hover {
+    background-color: var(--color-bg);
+    transform: rotate(20deg);
 }
 
-/* CARD DE DESTAQUE */
-
-.featured-card{
-  background-color: white;
-  border-radius: 25px;
-  padding: 30px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  margin-bottom: 60px;
+/* O ÍCONE em si (a <img>) — aqui é onde o tamanho real precisa ser preso */
+.ConfiguracaoBotao {
+    width: 24px;
+    height: 24px;
+    max-width: 24px;
+    object-fit: contain;
 }
 
-.featured-img{
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
-  border-radius: 20px;
+header .input-group .form-control {
+    border-color: var(--color-border);
 }
 
-.featured-content{
-  padding-right: 20px;
+header .input-group .btn {
+    white-space: nowrap;
 }
 
-.badge-custom{
-  background-color: #dc3545;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 30px;
-  font-size: 13px;
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 20px;
+/* ==========================================================================
+   Títulos de seção
+   ========================================================================== */
+
+.section-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 var(--space-md) 0;
+    padding-bottom: var(--space-xs);
+    border-bottom: 3px solid var(--color-primary);
+    display: inline-block;
 }
 
-.featured-title{
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #111;
+/* ==========================================================================
+   Carrossel de destaques
+   ========================================================================== */
+
+#carouselNoticias .carousel-img {
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
 }
 
-.featured-text{
-  font-size: 1.2rem;
-  line-height: 1.8;
-  color: #555;
+#carouselNoticias .carousel-caption {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25));
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    bottom: 1.5rem;
+    left: 5%;
+    right: 5%;
+    text-align: left;
 }
 
-/* BOTÃO */
-
-.btn-custom{
-  display: inline-block;
-  margin-top: 25px;
-  background-color: #173A67;
-  color: white;
-  padding: 14px 28px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+#carouselNoticias .carousel-caption h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: var(--space-xs) 0;
+    color: #fff;
 }
 
-.btn-custom:hover{
-    background-color: #102B4D;
+#carouselNoticias .carousel-caption hr {
+    border-color: rgba(255, 255, 255, 0.35);
 }
 
-/* CARDS */
-
-.news-card{
-  background-color: white;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-  transition: 0.3s;
-  height: 100%;
+#carouselNoticias .carousel-caption p {
+    font-size: 0.95rem;
+    margin-bottom: var(--space-sm);
+    color: #f1f1f1;
 }
 
-.news-card:hover{
-  transform: translateY(-5px);
+.badge-custom {
+    display: inline-block;
+    background-color: var(--color-danger);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
 }
 
-.news-card img{
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
+.btn-custom {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1.4rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color var(--transition), transform var(--transition);
 }
 
-.news-content{
-  padding: 24px;
+.btn-custom:hover {
+    background-color: var(--color-primary-dark);
+    color: #fff;
+    transform: translateY(-1px);
 }
 
-.news-title{
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin-bottom: 15px;
-  color: #111;
+#carouselNoticias .carousel-control-prev,
+#carouselNoticias .carousel-control-next {
+    width: 8%;
+    opacity: 0;
+    transition: opacity var(--transition);
 }
 
-.news-text{
-  color: #666;
-  line-height: 1.7;
-  font-size: 1rem;
+#carouselNoticias:hover .carousel-control-prev,
+#carouselNoticias:hover .carousel-control-next {
+    opacity: 0.85;
 }
 
+/* ==========================================================================
+   Lista de alertas (cards preenchidos via JS dentro de #lista-alertas)
+   Como o conteúdo é injetado dinamicamente, as regras abaixo são
+   defensivas: cobrem qualquer item filho (div, a, card do Bootstrap)
+   e qualquer imagem dentro deles, pra nada vazar do grid.
+   ========================================================================== */
 
-/* Css da parte do minihub de temperaturas */
-/* Css da parte do minihub de temperaturas */
-/* Css da parte do minihub de temperaturas */
+/* ==========================================================================
+   Lista de alertas
+   ========================================================================== */
+
+#lista-alertas {
+    margin-bottom: var(--space-xl);
+    gap: 2rem;
+}
+
+#lista-alertas > * {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition), transform var(--transition);
+
+    width: calc(50% - 1rem);
+    flex: 0 0 calc(50% - 1rem);
+}
+
+#lista-alertas img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+#lista-alertas .card-body,
+#lista-alertas > * > div:last-child {
+    padding: var(--space-md);
+}
+
+/* ==========================================================================
+   MiniHub de temperaturas
+   ========================================================================== */
+
+.hub-box {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-xl) var(--space-md);
+}
+
+#HeaderPesquisa h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+}
+
+#HeaderPesquisa .form-control {
+    border-color: var(--color-border);
+    padding: 0.6rem 0.9rem;
+}
+
+#BotaoPesquisarCidade {
+    border-radius: var(--radius-sm) !important;
+    font-weight: 600;
+    transition: opacity var(--transition);
+}
+
+#BotaoPesquisarCidade:hover {
+    opacity: 0.9;
+}
+
+.cards-scroll {
+    display: flex;
+    gap: var(--space-md);
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: var(--space-sm) 0.25rem var(--space-md);
+}
+
+.cards-scroll::-webkit-scrollbar {
+    height: 8px;
+}
+
+.cards-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 999px;
+}
+
 .Cardcidade {
-  border: 2px solid #555;
-  border-radius: 10px;
-  background-color: #ddd;
-  padding: 25px;
-  margin-bottom: 25px;
+    flex: 0 0 270px;
+    scroll-snap-align: start;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    transition: box-shadow var(--transition), transform var(--transition);
 }
 
-.BotaoTemperatura {
-  background-color: rgb(185, 255, 255);
-}
-.BotaoUmidade {
-  background-color: rgb(185, 255, 255);
+.Cardcidade:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
 }
 
-
-.TituloCidade {
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px;
+.Cardcidade .TituloCidade {
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: var(--space-sm);
 }
 
 .weather-info {
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
+    margin-bottom: var(--space-xs);
 }
 
-#HeaderPesquisa {
-  background-color: #a0a0a0;
+.BotaoTemperatura,
+.BotaoUmidade {
+    width: 100%;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm) !important;
+    padding: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    transition: background-color var(--transition), border-color var(--transition);
 }
 
-.cards-scroll{
-  height: 740px;
-  overflow-y: auto;
-  scrollbar-width: none;
+.BotaoTemperatura:hover,
+.BotaoUmidade:hover {
+    background-color: var(--color-bg);
+    border-color: var(--color-primary);
 }
-/* Css da parte do minihub de temperaturas */
-/* Css da parte do minihub de temperaturas */
-/* Css da parte do minihub de temperaturas */
+
+.Temperatura,
+.Umidade,
+.VelocidadeVento {
+    display: block;
+    margin-top: 0.2rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--color-text);
+}
+
+/* ==========================================================================
+   Modal de histórico
+   ========================================================================== */
+
+#GraficoTemperatura .modal-content {
+    border-radius: var(--radius-md);
+    border: none;
+}
+
+#GraficoTemperatura .modal-header {
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+#CanvasHistorico {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+footer {
+    background-color: var(--color-footer-bg);
+    color: var(--color-footer-text);
+    text-align: center;
+    padding: var(--space-lg) 0;
+    margin-top: var(--space-xl);
+}
+
+footer h2 {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-footer-text);
+}
+
+/* ==========================================================================
+   Preferência por menos movimento
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   Telas grandes (desktops amplos, 1200px+)
+   ========================================================================== */
+
+@media (min-width: 1200px) {
+    #carouselNoticias .carousel-img {
+        height: 480px;
+    }
+}
+
+/* ==========================================================================
+   Tablets (768px – 991.98px)
+   ========================================================================== */
+
+@media (max-width: 991.98px) {
+    #carouselNoticias .carousel-img {
+        height: 360px;
+    }
+
+    .hub-box {
+        padding: var(--space-lg) var(--space-sm);
+    }
+}
+
+/* ==========================================================================
+   Celulares e telas estreitas (até 767.98px)
+   ========================================================================== */
+
+@media (max-width: 767.98px) {
+    header .col-7 {
+        margin-top: var(--space-sm);
+        order: 3;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    header .col-3,
+    header .col-2 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .section-title {
+        font-size: 1.35rem;
+    }
+
+    #carouselNoticias .carousel-img {
+        height: 260px;
+    }
+
+    #carouselNoticias .carousel-caption {
+        padding: var(--space-sm) var(--space-md);
+        bottom: 0.75rem;
+    }
+
+    #carouselNoticias .carousel-caption h2 {
+        font-size: 1.1rem;
+    }
+
+    #carouselNoticias .carousel-caption p {
+        font-size: 0.85rem;
+    }
+
+    .badge-custom {
+        font-size: 0.62rem;
+    }
+
+    .btn-custom {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .hub-box {
+        padding: var(--space-md) var(--space-xs);
+    }
+
+    .Cardcidade {
+        flex: 0 0 220px;
+    }
+
+    #lista-alertas img {
+        height: 160px;
+    }
+}
+
+/* ==========================================================================
+   Celulares pequenos (até 480px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+    .imageHeader {
+        height: 30px;
+    }
+
+    header .input-group .btn {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    #carouselNoticias .carousel-img {
+        height: 200px;
+    }
+
+    #carouselNoticias .carousel-caption h2 {
+        font-size: 1rem;
+    }
+
+    .Cardcidade {
+        flex: 0 0 200px;
+        padding: var(--space-sm);
+    }
+
+    .Temperatura,
+    .Umidade,
+    .VelocidadeVento {
+        font-size: 0.9rem;
+    }
+}
+
+/* Desktop (1366x768 ou superior) */
+@media (min-width: 1366px) {
+    #lista-alertas {
+        gap: 2rem;
+    }
+}
+
+/* Celulares e tablets */
+@media (max-width: 767.98px) {
+    #lista-alertas {
+        gap: 1rem;
+    }
+
+    #lista-alertas > * {
+        width: 90%;
+        flex: 0 0 100%;
+        max-width: 90%;
+        margin-left: 1.5rem;
+    }
+}

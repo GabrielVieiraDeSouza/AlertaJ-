@@ -234,7 +234,7 @@ async function CriarModalGraficoUmidade(CidadeId,NomeCidade) {
         ctx.beginPath();
         ctx.arc(x, y, 5, 0, Math.PI * 2);
 
-        ctx.filleStyle = "#444";
+        ctx.fillStyle = "#444";
         ctx.fill();
     }
 
