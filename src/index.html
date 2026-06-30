@@ -5,6 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Homepage.css">
+
+    <!-- Configurações / Tema (Ferlanio) -->
+    <link rel="stylesheet" href="Configuracoes/theme.css">
+    <link rel="stylesheet" href="Configuracoes/sidebar.css">
+    <script>
+      /* anti-flash: aplica o tema escuro antes da página pintar */
+      (function () {
+        try {
+          var c = JSON.parse(localStorage.getItem('alertaJa_config'));
+          if (c && c.temaEscuro) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.setAttribute('data-bs-theme', 'dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -319,6 +336,10 @@
 <!-- SCRIPT -->
 <script src="MiniHub/JavaScriptMiniHubDeTemperaturas.js"></script>
 <script src="NoticiaseAlertasRecentes/script.js"></script>
+
+<!-- Configurações / Sidebar (Ferlanio) -->
+<script src="Configuracoes/config-api.js"></script>
+<script src="Configuracoes/sidebar.js"></script>
 
 </body>
 </html>
