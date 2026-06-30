@@ -368,6 +368,233 @@ main{
 }
 
 /* =========================
+   BARRA DE BUSCA DE ALERTAS
+========================= */
+ 
+.barra-busca-noticias {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+ 
+.busca-input-wrap {
+    flex: 1 1 280px;
+}
+ 
+.busca-input-wrap input {
+    width: 100%;
+    height: 48px;
+    border: 2px solid #DDDDDD;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: #222;
+    transition: border-color 0.2s;
+}
+ 
+.busca-input-wrap input:focus {
+    outline: none;
+    border-color: #1E3A5F;
+}
+ 
+.btn-categoria {
+    height: 48px;
+    background: white;
+    border: 2px solid #1E3A5F;
+    border-radius: 8px;
+    color: #1E3A5F;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0 18px;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+}
+ 
+.btn-categoria:hover,
+.btn-categoria:focus,
+.btn-categoria.show {
+    background: #1E3A5F;
+    color: white;
+}
+ 
+.btn-pesquisar {
+    height: 48px;
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0 28px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+ 
+.btn-pesquisar:hover {
+    background: #29507F;
+}
+ 
+/* =========================
+   MODAL DE PESQUISA
+========================= */
+ 
+.modal-noticias-content {
+    background: #f4f4f4;
+}
+ 
+.modal-noticias-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: #1E3A5F;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+ 
+.modal-noticias-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: white;
+}
+ 
+.btn-fechar-modal {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 8px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+ 
+.btn-fechar-modal:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: white;
+}
+ 
+/* =========================
+   CARDS DE RESULTADO
+========================= */
+ 
+#listaNoticias .noticia-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    border-bottom: 1px solid #DDDDDD;
+    background: white;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+ 
+#listaNoticias .noticia-item:hover {
+    background: #f0f4f9;
+}
+ 
+#listaNoticias .noticia-item img {
+    width: 120px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+ 
+#listaNoticias .sem-imagem {
+    width: 120px;
+    height: 85px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: #DDDDDD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+ 
+#listaNoticias .noticia-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1E3A5F;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+ 
+#listaNoticias .noticia-resumo {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+ 
+#listaNoticias .noticia-autor {
+    display: inline-block;
+    background: #1E3A5F;
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+ 
+/* =========================
+   ESTADOS CARREGANDO/VAZIO
+========================= */
+ 
+.msg-estado {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #888;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+}
+ 
+#msgVazio {
+    display: none;
+}
+ 
+/* =========================
+   RESPONSIVO — BUSCA
+========================= */
+ 
+@media (max-width: 768px) {
+    .barra-busca-noticias {
+        flex-direction: column;
+        align-items: stretch;
+    }
+ 
+    .btn-categoria,
+    .btn-pesquisar {
+        width: 100%;
+        justify-content: center;
+    }
+ 
+    #listaNoticias .noticia-item img,
+    #listaNoticias .sem-imagem {
+        width: 80px;
+        height: 65px;
+    }
+}
+
+/* =========================
    RESPONSIVO
 ========================= */
 

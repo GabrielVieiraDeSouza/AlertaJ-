@@ -36,7 +36,7 @@ async function carregarAlertas() {
         const resposta = await fetch(API_URL);
         alertas = await resposta.json();
         
-        // CORREÇÃO: Cria caixas de seleção adicionais se houver novos tipos no cadastro
+
         gerarFiltrosAdicionais(); 
         mostrarAlertas(alertas);
     } catch (erro) {
