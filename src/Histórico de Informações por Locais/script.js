@@ -1,237 +1,235 @@
+// CORREÇÃO: Removida a linha 1 que quebrava o script de cara!
+
+const API_URL = "http://localhost:3000/alertas";
+
 let alertas = [];
+let alertasExibidos = [];
 
 const lista = document.getElementById("lista-alertas");
 const campoBusca = document.getElementById("campo-busca");
 const botaoBusca = document.getElementById("botao-busca");
+
 const totalAlertas = document.getElementById("total-alertas");
 const totalAlto = document.getElementById("total-alto");
 const totalMedio = document.getElementById("total-medio");
 const totalBaixo = document.getElementById("total-baixo");
 
-fetch("http://localhost:3000/alertas")
-    .then(function(resposta) {
-        return resposta.json();
-    })
-    .then(function(dados) {
-        console.log(dados);
+// Mapeamento dos checkboxes estáticos que você já tem no HTML
+const filtrosEstaticos = {
+    "chuva": document.getElementById("chuva"),
+    "enchente": document.getElementById("enchente"),
+    "deslizamento": document.getElementById("deslizamento"),
+    "seca": document.getElementById("seca"),
+    "tempestade": document.getElementById("tempestade")
+};
 
-        alertas = dados;
+const filtroDataInicio = document.getElementById("data-inicio");
+const filtroDataFim = document.getElementById("data-fim");
+const filtroRisco = document.getElementById("filtro-risco");
+
+const modal = document.getElementById("modal");
+const conteudoModal = document.getElementById("conteudo-modal");
+const fecharModal = document.getElementById("fechar-modal");
+
+async function carregarAlertas() {
+    try {
+        const resposta = await fetch(API_URL);
+        alertas = await resposta.json();
+        
+        // CORREÇÃO: Cria caixas de seleção adicionais se houver novos tipos no cadastro
+        gerarFiltrosAdicionais(); 
         mostrarAlertas(alertas);
-    })
-    .catch(function(erro) {
-        console.log("Erro ao buscar alertas:", erro);
-    });
-
-    function atualizarEstatisticas(listaAlertas) {
-
-    totalAlertas.textContent = listaAlertas.length;
-
-    totalAlto.textContent = listaAlertas.filter(function(alerta) {
-        return alerta.risco === "alto";
-    }).length;
-
-    totalMedio.textContent = listaAlertas.filter(function(alerta) {
-        return alerta.risco === "medio";
-    }).length;
-
-    totalBaixo.textContent = listaAlertas.filter(function(alerta) {
-        return alerta.risco === "baixo";
-    }).length;
-}
-
-function mostrarAlertas(listaAlertas) {
-
-    lista.innerHTML = "";
-
-    for(let i = 0; i < listaAlertas.length; i++) {
-
-        atualizarEstatisticas(listaAlertas);
-
-        lista.innerHTML += `
-            <div class="card-alerta">
-
-                <div class="topo-card">
-
-                    <h3>${listaAlertas[i].tipo}</h3>
-
-                    <span class="risco ${listaAlertas[i].risco}">
-                        ${listaAlertas[i].risco}
-                    </span>
-
-                </div>
-
-                <p><strong>Cidade:</strong> ${listaAlertas[i].cidade}</p>
-
-                <p><strong>Bairro:</strong> ${listaAlertas[i].bairro}</p>
-
-                <p><strong>Data:</strong> ${listaAlertas[i].data}</p>
-
-                <p><strong>Descrição:</strong> ${listaAlertas[i].descricao}</p>
-
-                <p><strong>Status:</strong> ${listaAlertas[i].status}</p>
-
-                <button onclick="abrirModal(${i})">
-    Ver detalhes
-</button>
-
-            </div>
+    } catch (erro) {
+        console.error(erro);
+        lista.innerHTML = `
+            <p class="mensagem-vazia">
+                Erro ao carregar os alertas.
+            </p>
         `;
     }
-
 }
 
+// CORREÇÃO: Gera checkboxes extras no HTML sem destruir os que já existem no CSS
+function gerarFiltrosAdicionais() {
+    const container = document.querySelector(".grupo-filtro");
+    if (!container) return;
 
-botaoBusca.addEventListener("click", function() {
+    // Tipos padrão que seu HTML fixo já cobre
+    const tiposPadrao = ["chuva", "enchente", "deslizamento", "seca", "tempestade"];
+    
+    // Mapeia todos os tipos existentes no banco (removendo duplicados e vazios)
+    const tiposNoBanco = [...new Set(alertas.map(a => a.tipo).filter(Boolean))];
 
-    const textoBusca = campoBusca.value.trim().toLowerCase();
-
-    const resultados = alertas.filter(function(alerta) {
-
-        return alerta.cidade.toLowerCase().includes(textoBusca)
-            || alerta.bairro.toLowerCase().includes(textoBusca);
-
+    tiposNoBanco.forEach(tipo => {
+        const tipoMinúsculo = tipo.toLowerCase();
+        
+        // Se o tipo do banco NÃO for um dos 5 padrões e NÃO existir na tela ainda, adiciona ele
+        const jaExisteId = tipoMinúsculo.replace(/\s+/g, '-');
+        if (!tiposPadrao.includes(tipoMinúsculo) && !document.getElementById(jaExisteId)) {
+            
+            // Cria a exata estrutura HTML esperada pelas suas classes CSS
+            const novaDiv = document.createElement("div");
+            novaDiv.className = "filtro-item";
+            novaDiv.innerHTML = `
+                <input type="checkbox" id="${jaExisteId}" class="filtro-dinamico" value="${tipo}">
+                <label for="${jaExisteId}">${tipo}</label>
+            `;
+            
+            container.appendChild(novaDiv);
+            
+            // Adiciona o ouvinte para disparar o filtro quando clicado
+            novaDiv.querySelector("input").addEventListener("change", aplicarFiltros);
+        }
     });
+}
 
-    if(resultados.length === 0) {
+function atualizarEstatisticas(listaAlertas){
+    totalAlertas.textContent = listaAlertas.length;
 
+    // CORREÇÃO: Tratando caso o item use "risco" ou "nivel"
+    totalAlto.textContent = listaAlertas.filter(a => (a.risco || a.nivel) === "alto").length;
+    totalMedio.textContent = listaAlertas.filter(a => (a.risco || a.nivel) === "medio").length;
+    totalBaixo.textContent = listaAlertas.filter(a => (a.risco || a.nivel) === "baixo").length;
+}
+
+function mostrarAlertas(listaAlertas){
+    alertasExibidos = listaAlertas;
+    atualizarEstatisticas(listaAlertas);
+    lista.innerHTML = "";
+
+    if(listaAlertas.length === 0){
         lista.innerHTML = `
             <p class="mensagem-vazia">
                 Nenhum alerta encontrado.
             </p>
         `;
-
+        return;
     }
 
-    else {
+    listaAlertas.forEach((alerta, indice)=>{
+        // CORREÇÃO: Garante que vai ler 'risco' ou 'nivel', evitando quebrar o toUpperCase()
+        const riscoTratado = alerta.risco || alerta.nivel || "desconhecido";
 
-        mostrarAlertas(resultados);
+        lista.innerHTML += `
+        <div class="card-alerta">
+            <div class="topo-card">
+                <h3>${alerta.titulo}</h3>
+                <span class="risco ${riscoTratado}">
+                    ${riscoTratado.toUpperCase()}
+                </span>
+            </div>
+            <p><strong>Cidade:</strong> ${alerta.cidade || "Não informada"}</p>
+            <p><strong>Bairro:</strong> ${alerta.bairro || "Não informado"}</p>
+            <p><strong>Data:</strong> ${alerta.data || "Sem data"}</p>
+            <p><strong>Descrição:</strong> ${alerta.descricao || "Sem descrição"}</p>
+            <p><strong>Status:</strong> ${alerta.status || "Monitoramento"}</p>
+            <button onclick="abrirModal(${indice})">
+                Ver detalhes
+            </button>
+        </div>
+        `;
+    });
+}
 
+botaoBusca.addEventListener("click", ()=>{
+    const texto = campoBusca.value.trim().toLowerCase();
+    if(texto === ""){
+        mostrarAlertas(alertas);
+        return;
     }
 
+    const resultados = alertas.filter(alerta=>{
+        return (alerta.cidade || "").toLowerCase().includes(texto)
+        ||
+        (alerta.bairro || "").toLowerCase().includes(texto)
+        ||
+        (alerta.titulo || "").toLowerCase().includes(texto);
+    });
+    mostrarAlertas(resultados);
 });
 
+function aplicarFiltros(){
+    const tiposSelecionados = [];
+    
+    // 1. Verifica os filtros estáticos do seu HTML original
+    if(filtrosEstaticos.chuva && filtrosEstaticos.chuva.checked) tiposSelecionados.push("chuva");
+    if(filtrosEstaticos.enchente && filtrosEstaticos.enchente.checked) tiposSelecionados.push("enchente");
+    if(filtrosEstaticos.deslizamento && filtrosEstaticos.deslizamento.checked) tiposSelecionados.push("deslizamento");
+    if(filtrosEstaticos.seca && filtrosEstaticos.seca.checked) tiposSelecionados.push("seca");
+    if(filtrosEstaticos.tempestade && filtrosEstaticos.tempestade.checked) tiposSelecionados.push("tempestade");
 
-const filtroChuva = document.getElementById("chuva");
+    // 2. CORREÇÃO: Verifica também os novos filtros criados dinamicamente
+    const checkboxesDinamicos = document.querySelectorAll(".filtro-dinamico:checked");
+    checkboxesDinamicos.forEach(cb => tiposSelecionados.push(cb.value.toLowerCase()));
 
-const filtroEnchente = document.getElementById("enchente");
+    const risco = filtroRisco.value;
+    const inicio = filtroDataInicio.value;
+    const fim = filtroDataFim.value;
 
-const filtroDeslizamento = document.getElementById("deslizamento");
+    const resultados = alertas.filter(alerta=>{
+        const tipoAlerta = (alerta.tipo || "").toLowerCase();
+        const tituloAlerta = (alerta.titulo || "").toLowerCase();
 
-const filtroSeca = document.getElementById("seca");
+        // Se nenhuma caixa estiver marcada, exibe tudo. Se tiver marcada, o item precisa corresponder
+        const tipoOk = tiposSelecionados.length === 0 || tiposSelecionados.some(tipo =>
+            tipoAlerta.includes(tipo) || tituloAlerta.includes(tipo)
+        );
 
-const filtroTempestade = document.getElementById("tempestade");
+        // CORREÇÃO: Filtro de risco adaptado para aceitar as duas propriedades antigas/novas
+        const riscoAlerta = alerta.risco || alerta.nivel || "";
+        const riscoOk = risco === "" || riscoAlerta === risco;
 
-const filtroDataInicio = document.getElementById("data-inicio");
+        const data = new Date(alerta.data);
+        const inicioOk = inicio === "" || data >= new Date(inicio);
+        const fimOk = fim === "" || data <= new Date(fim);
 
-const filtroDataFim = document.getElementById("data-fim");
-
-const filtroRisco = document.getElementById("filtro-risco");
-
-function aplicarFiltros() {
-
-    let alertasFiltrados = [];
-
-    if(filtroChuva.checked) {
-        alertasFiltrados.push("Chuva Forte");
-    }
-
-    if(filtroEnchente.checked) {
-        alertasFiltrados.push("Enchente");
-    }
-
-    if(filtroDeslizamento.checked) {
-        alertasFiltrados.push("Deslizamento");
-    }
-
-    if(filtroSeca.checked) {
-        alertasFiltrados.push("Seca");
-    }
-
-    if(filtroTempestade.checked) {
-        alertasFiltrados.push("Tempestade");
-    }
-
-    const riscoSelecionado = filtroRisco.value;
-
-    const dataInicio = filtroDataInicio.value;
-    const dataFim = filtroDataFim.value;
-
-    const resultados = alertas.filter(function(alerta) {
-
-const riscoOk = riscoSelecionado === "" || alerta.risco === riscoSelecionado;
-
-        const tipoOk =
-            alertasFiltrados.length === 0 ||
-            alertasFiltrados.includes(alerta.tipo);
-
-        const dataAlerta = new Date(alerta.data);
-
-        const inicioOk =
-            dataInicio === "" ||
-            dataAlerta >= new Date(dataInicio);
-
-        const fimOk =
-            dataFim === "" ||
-            dataAlerta <= new Date(dataFim);
-
-
-        return tipoOk && inicioOk && fimOk && riscoOk;
+        return tipoOk && riscoOk && inicioOk && fimOk;
     });
 
     mostrarAlertas(resultados);
 }
 
+// Ouvintes para os filtros fixos que vieram do HTML
+[
+filtrosEstaticos.chuva,
+filtrosEstaticos.enchente,
+filtrosEstaticos.deslizamento,
+filtrosEstaticos.seca,
+filtrosEstaticos.tempestade,
+filtroDataInicio,
+filtroDataFim,
+filtroRisco
+].forEach(elemento=>{
+    if (elemento) elemento.addEventListener("change", aplicarFiltros);
+});
 
-
-filtroChuva.addEventListener("change", aplicarFiltros);
-
-filtroEnchente.addEventListener("change", aplicarFiltros);
-
-filtroDeslizamento.addEventListener("change", aplicarFiltros);
-
-filtroSeca.addEventListener("change", aplicarFiltros);
-
-filtroTempestade.addEventListener("change", aplicarFiltros);
-
-filtroDataInicio.addEventListener("change", aplicarFiltros);
-
-filtroDataFim.addEventListener("change", aplicarFiltros);
-
-filtroRisco.addEventListener("change", aplicarFiltros);
-
-const modal = document.getElementById("modal");
-
-const conteudoModal = document.getElementById("conteudo-modal");
-
-const fecharModal = document.getElementById("fechar-modal");
-
-function abrirModal(indice) {
-
-    const alerta = alertas[indice];
+function abrirModal(indice){
+    const alerta = alertasExibidos[indice];
+    const riscoTratado = alerta.risco || alerta.nivel || "desconhecido";
 
     conteudoModal.innerHTML = `
-        <h2>${alerta.tipo}</h2>
-
-        <p><strong>Cidade:</strong> ${alerta.cidade}</p>
-
-        <p><strong>Bairro:</strong> ${alerta.bairro}</p>
-
-        <p><strong>Data:</strong> ${alerta.data}</p>
-
-        <p><strong>Descrição:</strong> ${alerta.descricao}</p>
-
-        <p><strong>Status:</strong> ${alerta.status}</p>
-
-        <p><strong>Risco:</strong> ${alerta.risco}</p>
+        <h2>${alerta.titulo}</h2>
+        <hr>
+        <p><strong>Cidade:</strong> ${alerta.cidade || "Não informada"}</p>
+        <p><strong>Bairro:</strong> ${alerta.bairro || "Não informado"}</p>
+        <p><strong>Data:</strong> ${alerta.data || "Sem data"}</p>
+        <p><strong>Status:</strong> ${alerta.status || "Monitoramento"}</p>
+        <p><strong>Risco:</strong> ${riscoTratado.toUpperCase()}</p>
+        <p><strong>Descrição:</strong></p>
+        <p>${alerta.descricao || "Sem descrição"}</p>
     `;
-
     modal.style.display = "flex";
-
 }
 
-
-fecharModal.addEventListener("click", function() {
-
+fecharModal.addEventListener("click", ()=>{
     modal.style.display = "none";
-
 });
+
+window.addEventListener("click",(event)=>{
+    if(event.target === modal){
+        modal.style.display = "none";
+    }
+});
+
+// Inicializa a busca de dados
+carregarAlertas();

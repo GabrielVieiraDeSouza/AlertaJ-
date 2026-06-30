@@ -1,45 +1,160 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Alertas</title>
+
+    <title>Cadastro de Alertas | Alerta Já</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <h1>Cadastro de Alertas de Risco</h1>
+    <main class="container">
 
-    <form id="formAlerta">
+        <section class="card-cadastro">
 
-        <input type="text" id="titulo" placeholder="Título do alerta">
+            <header class="cabecalho">
 
-        <input type="text" id="cidade" placeholder="Cidade">
+                <h1>Cadastro de Alertas</h1>
 
+                <p>
+                    Registre um novo alerta preventivo para informar a população sobre situações de risco.
+                </p>
 
-        <input type="text" id="bairro" placeholder="Bairro">
+            </header>
 
-        <select id="nivel">
-            <option value="">Selecione o nível</option>
-            <option value="Baixo">Baixo</option>
-            <option value="Médio">Médio</option>
-            <option value="Alto">Alto</option>
-        </select>
+            <form id="formAlerta">
 
-        <textarea id="descricao" placeholder="Descrição"></textarea>
+                <div class="campo">
 
-        <input type="date" id="data">
+                    <label for="tipo">Tipo do alerta</label>
 
-        <button type="submit">Cadastrar</button>
+                    <select id="tipo" required>
 
-    </form>
+                        <option value="">Selecione</option>
 
-    <hr>
+                        <option value="Chuva">Chuva Forte</option>
 
-    <div id="listaAlertas"></div>
+                        <option value="Enchente">Enchente</option>
+
+                        <option value="Deslizamento">Deslizamento</option>
+
+                        <option value="Seca">Seca</option>
+
+                        <option value="Tempestade">Tempestade</option>
+
+                        <option value="Incêndio">Incêndio</option>
+
+                        <option value="Outros">Outros</option>
+
+                    </select>
+
+                </div>
+
+                <div class="linha">
+
+                    <div class="campo">
+
+                        <label for="cidade">Cidade</label>
+
+                        <input
+                            type="text"
+                            id="cidade"
+                            placeholder="Ex: Belo Horizonte">
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label for="bairro">Bairro</label>
+
+                        <input
+                            type="text"
+                            id="bairro"
+                            placeholder="Ex: Pampulha">
+
+                    </div>
+
+                </div>
+
+                <div class="linha">
+
+                    <div class="campo">
+
+                        <label for="nivel">Nível de risco</label>
+
+                        <select id="nivel">
+
+                            <option value="">Selecione</option>
+                            <option>Baixo</option>
+                            <option>Médio</option>
+                            <option>Alto</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label for="data">Data do alerta</label>
+
+                        <input type="date" id="data">
+
+                    </div>
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="descricao">Descrição</label>
+
+                    <textarea
+                        id="descricao"
+                        rows="6"
+                        placeholder="Descreva o alerta..."></textarea>
+
+                </div>
+
+                <button
+                    class="btn-cadastrar"
+                    type="submit">
+
+                    Cadastrar Alerta
+
+                </button>
+
+            </form>
+
+        </section>
+
+        <section class="alertas-cadastrados">
+
+            <div class="titulo-lista">
+
+                <h2>Alertas Cadastrados</h2>
+
+                <p>
+                    Os alertas cadastrados aparecerão abaixo.
+                </p>
+
+            </div>
+
+            <div id="listaAlertas"></div>
+
+        </section>
+
+    </main>
 
     <script src="app.js"></script>
 
 </body>
+
 </html>
