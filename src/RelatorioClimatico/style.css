@@ -1,0 +1,255 @@
+/* ================= RESET ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+/* ================= BODY ================= */
+
+body{
+    background:#d9d9d9;
+}
+
+/* ================= TÍTULO ================= */
+
+h1{
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-size:28px;
+    letter-spacing:1px;
+    box-shadow:0 3px 8px rgba(0,0,0,.3);
+}
+
+h2{
+    text-align:center;
+    margin-top:35px;
+    color:#333;
+}
+
+/* ================= FILTROS ================= */
+
+.filtros{
+
+    width:90%;
+    max-width:900px;
+
+    margin:35px auto;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:15px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:10px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+}
+
+.filtros select,
+.filtros input{
+
+    padding:12px;
+
+    border:1px solid #bdbdbd;
+
+    border-radius:6px;
+
+    font-size:15px;
+
+}
+
+/* ================= BOTÕES ================= */
+
+button{
+
+    background:#1E4D79;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#173b5c;
+
+}
+
+/* ================= PAINEL ================= */
+
+#painelRelatorio{
+
+    background:white;
+
+    max-width:900px;
+
+    margin:25px auto;
+
+    padding:25px;
+
+    border-radius:10px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+    min-height:180px;
+
+}
+
+/* Cards do relatório */
+
+.card{
+
+    background:#f8f8f8;
+
+    border-left:6px solid #1E4D79;
+
+    border-radius:8px;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+}
+
+.card h3{
+
+    color:#1E4D79;
+
+    margin-bottom:10px;
+
+}
+
+.card p{
+
+    margin:8px 0;
+
+    color:#444;
+
+}
+
+/* ================= HISTÓRICO ================= */
+
+#historico{
+
+    background:white;
+
+    max-width:900px;
+
+    margin:20px auto;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+    list-style:none;
+
+}
+
+#historico li{
+
+    padding:12px;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+#historico li:last-child{
+
+    border-bottom:none;
+
+}
+
+/* ================= BOTÃO PDF ================= */
+
+#btnPDF{
+
+    display:block;
+
+    margin:30px auto;
+
+    width:220px;
+
+}
+
+/* ================= RESPONSIVO ================= */
+
+@media(max-width:768px){
+
+    .filtros{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .filtros select,
+    .filtros input,
+    .filtros button{
+
+        width:100%;
+
+    }
+
+    #painelRelatorio,
+    #historico{
+
+        width:92%;
+
+    }
+
+}
+hr{
+
+    margin:15px 0;
+
+    border:none;
+
+    border-top:1px solid #ddd;
+
+}
+
+.card ul{
+
+    margin-top:10px;
+
+    padding-left:20px;
+
+}
+
+.card li{
+
+    margin-bottom:8px;
+
+}
+
+.card h4{
+
+    margin-top:15px;
+
+    color:#C0392B;
+
+}
