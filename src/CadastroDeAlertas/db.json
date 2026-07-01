@@ -1,0 +1,37 @@
+{
+  "alertas": [
+    {
+      "titulo": "Chuvas Fortes",
+      "cidade": "Belo Horizonte",
+      "nivel": "Alto",
+      "descricao": "Risco de alagamento",
+      "data": "2026-05-08",
+      "id": "KTvsscwu6oc"
+    },
+    {
+      "titulo": "Vendaval",
+      "cidade": "Sabará",
+      "nivel": "Alto",
+      "descricao": "Fortes ventanias",
+      "data": "2026-05-15",
+      "id": "H1GM6bqntvU"
+    },
+    {
+      "titulo": "Chuva",
+      "cidade": "Belo Horizonte",
+      "nivel": "Baixo",
+      "descricao": "ventanias",
+      "data": "2026-06-06",
+      "id": "rD5CvRI6K00"
+    },
+    {
+      "titulo": "Tormentas",
+      "cidade": "Contagem",
+      "nivel": "Alto",
+      "descricao": "Fortes tempestades",
+      "data": "2026-06-01",
+      "id": "s7C5DSrmRrY"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
