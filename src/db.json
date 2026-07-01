@@ -113,14 +113,22 @@
       "Nome": "Patos de Minas"
     }
   ],
-  "usuarios": [],
+  "usuarios": [
+    {
+      "nome": "a",
+      "email": "a@a.com.br",
+      "senha": "aaaa",
+      "admin": false,
+      "id": "quBqfaSJlyI"
+    }
+  ],
   "configuracoesUsuario": [
     {
       "id": "1",
-      "usuarioId": null,
-      "temaEscuro": true,
-      "notificacoesAtivas": true,
-      "regiaoPadrao": "Betim",
+      "usuarioId": "927202",
+      "temaEscuro": false,
+      "notificacoesAtivas": false,
+      "regiaoPadrao": "Patos de Minas",
       "idioma": "pt-BR"
     }
   ],

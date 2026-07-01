@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar - Alerta Já</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="perfil.css">
+  <script>
+    (function () {
+      try {
+        var c = JSON.parse(localStorage.getItem('alertaJa_config'));
+        if (c && c.temaEscuro) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          document.documentElement.setAttribute('data-bs-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+
+<body>
+
+  <header class="perfil-header">
+    <span class="brand">⚠️ Alerta Já</span>
+    <nav><a href="../index.html">Início</a></nav>
+  </header>
+
+  <main>
+    <div class="perfil-card">
+      <h1>Entrar na sua conta</h1>
+
+      <div class="foto-perfil">
+        <div class="circulo-foto">🔒</div>
+      </div>
+
+      <form id="form-login">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="voce@exemplo.com" autocomplete="email">
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="••••••••" autocomplete="current-password">
+
+        <div class="feedback" id="feedback"></div>
+
+        <div class="acoes">
+          <button type="submit" class="btn-salvar">Entrar</button>
+        </div>
+      </form>
+
+      <p style="text-align:center; margin-top:18px; font-size:.9rem;">
+        Não tem conta? <a href="cadastro.html" style="color:var(--aj-heading); font-weight:700;">Cadastre-se</a>
+      </p>
+    </div>
+  </main>
+
+  <script src="config-api.js"></script>
+  <script src="auth.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
