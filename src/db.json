@@ -126,7 +126,7 @@
     {
       "id": "1",
       "usuarioId": "927202",
-      "temaEscuro": false,
+      "temaEscuro": true,
       "notificacoesAtivas": false,
       "regiaoPadrao": "Patos de Minas",
       "idioma": "pt-BR"
@@ -204,20 +204,6 @@
     }
   ],
   "alertas": [
-    {
-      "id": "1",
-      "titulo": "Chuva Forte",
-      "tipo": "Chuva",
-      "cidade": "Belo Horizonte",
-      "bairro": "Centro",
-      "descricao": "Previsão de fortes pancadas de chuva acompanhadas de raios e rajadas de vento nas próximas horas.",
-      "data": "2026-06-30",
-      "risco": "medio",
-      "status": "Monitoramento",
-      "criadoEm": "2026-06-30T12:00:00.000Z",
-      "imagem": "",
-      "fonte": "Cadastro Manual"
-    },
     {
       "id": "2",
       "titulo": "Enchente",
