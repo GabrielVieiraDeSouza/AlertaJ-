@@ -173,18 +173,35 @@
       notificar("alertaja:regiao-changed", { regiao: estado.regiaoPadrao });
     });
 
-    document.getElementById("aj-sair").addEventListener("click", () => {
-      alert("Sessão encerrada com sucesso.");
-      fechar();
+    document.getElementById("aj-sair").addEventListener("click", (ev) => {
+      // se estiver logado, encerra a sessão; em ambos os casos vai para o login
+      if (ev.currentTarget.dataset.acao === "sair") {
+        try { localStorage.removeItem("alertaJa_sessao"); } catch (e) {}
+      }
+      window.location.href = BASE + "login.html";
     });
 
-    // nome do usuário no topo da sidebar
-    try {
-      const u = await ConfigAPI.obterUsuario();
-      const nome = u.nomeCompleto || u.nome || "Usuário";
-      document.getElementById("aj-nome").textContent = "Olá, " + nome.split(" ")[0];
-      document.getElementById("aj-avatar").textContent = nome.trim().charAt(0).toUpperCase();
-    } catch (e) { /* mantém padrão */ }
+    // reflete o estado de login (logado x visitante)
+    let sess = null;
+    try { sess = JSON.parse(localStorage.getItem("alertaJa_sessao")); } catch (e) {}
+    const linkPerfil = document.querySelector("#aj-sidebar .link-perfil");
+    const btnSair = document.getElementById("aj-sair");
+    if (sess) {
+      const primeiro = (sess.nome || "Usuário").split(" ")[0];
+      document.getElementById("aj-nome").textContent = "Olá, " + primeiro + (sess.admin ? " (Admin)" : "");
+      document.getElementById("aj-avatar").textContent = (sess.nome || "U").trim().charAt(0).toUpperCase();
+      linkPerfil.textContent = "⚙️ Meus Dados";
+      linkPerfil.setAttribute("href", BASE + "perfil.html");
+      btnSair.textContent = "🚪 Sair";
+      btnSair.dataset.acao = "sair";
+    } else {
+      document.getElementById("aj-nome").textContent = "Visitante";
+      document.getElementById("aj-avatar").textContent = "👤";
+      linkPerfil.textContent = "🔑 Entrar / Cadastrar";
+      linkPerfil.setAttribute("href", BASE + "login.html");
+      btnSair.textContent = "🔓 Entrar";
+      btnSair.dataset.acao = "entrar";
+    }
   }
 
   /* ---------- API pública para os outros módulos ---------- */

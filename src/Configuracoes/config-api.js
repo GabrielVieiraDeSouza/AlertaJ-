@@ -1,14 +1,16 @@
 /* =====================================================================
    config-api.js — Camada de acesso ao json-server (parte do Ferlanio)
-   Centraliza os fetch de usuário e configurações e mantém um cache em
-   localStorage (para o tema aplicar instantaneamente e funcionar mesmo
-   se o servidor estiver offline). Expõe window.ConfigAPI.
+   Centraliza os fetch de usuário/configurações e mantém um cache em
+   localStorage. Agora também: cria usuário (cadastro) e autentica (login).
+   O id do usuário vem da SESSÃO (alertaJa_sessao); se não houver login,
+   cai no usuário-exemplo 927202. Expõe window.ConfigAPI.
 ===================================================================== */
 (function () {
+  "use strict";
   const API = "http://localhost:3000";
-  const USUARIO_ID = "927202";        // sem login: usuário fixo (premissa documentada)
-  const CONFIG_ID = "1";              // id do registro em /configuracoesUsuario
+  const CONFIG_ID = "1";
   const CACHE_KEY = "alertaJa_config";
+  const SESSAO_KEY = "alertaJa_sessao";
 
   const PADRAO = {
     temaEscuro: false,
@@ -17,17 +19,25 @@
     idioma: "pt-BR",
   };
 
+  // id do usuário logado (sessão); fallback para o usuário-exemplo
+  function idAtual() {
+    try {
+      const s = JSON.parse(localStorage.getItem(SESSAO_KEY));
+      return s && s.id ? s.id : "927202";
+    } catch (e) {
+      return "927202";
+    }
+  }
+
   const ConfigAPI = {
-    USUARIO_ID,
+    idAtual,
 
     /* ---------- cache local ---------- */
     lerCache() {
       try { return JSON.parse(localStorage.getItem(CACHE_KEY)) || null; }
       catch (e) { return null; }
     },
-    gravarCache(cfg) {
-      localStorage.setItem(CACHE_KEY, JSON.stringify(cfg));
-    },
+    gravarCache(cfg) { localStorage.setItem(CACHE_KEY, JSON.stringify(cfg)); },
 
     /* ---------- configurações ---------- */
     async obterConfig() {
@@ -38,15 +48,13 @@
         this.gravarCache(cfg);
         return cfg;
       } catch (e) {
-        // servidor offline: usa cache ou padrão
         return this.lerCache() || { ...PADRAO };
       }
     },
-
     async salvarConfig(patch) {
       const atual = this.lerCache() || { ...PADRAO };
       const novo = { ...atual, ...patch };
-      this.gravarCache(novo); // salva já no cache (resposta instantânea)
+      this.gravarCache(novo);
       try {
         await fetch(`${API}/configuracoesUsuario/${CONFIG_ID}`, {
           method: "PATCH",
@@ -59,15 +67,14 @@
       return novo;
     },
 
-    /* ---------- usuário (Meus Dados) ---------- */
+    /* ---------- usuário logado (Meus Dados) ---------- */
     async obterUsuario() {
-      const r = await fetch(`${API}/usuarios/${USUARIO_ID}`);
+      const r = await fetch(`${API}/usuarios/${idAtual()}`);
       if (!r.ok) throw new Error("HTTP " + r.status);
       return r.json();
     },
-
     async salvarUsuario(patch) {
-      const r = await fetch(`${API}/usuarios/${USUARIO_ID}`, {
+      const r = await fetch(`${API}/usuarios/${idAtual()}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(patch),
@@ -75,21 +82,48 @@
       if (!r.ok) throw new Error("HTTP " + r.status);
       return r.json();
     },
-
     async excluirUsuario() {
-      const r = await fetch(`${API}/usuarios/${USUARIO_ID}`, { method: "DELETE" });
+      const r = await fetch(`${API}/usuarios/${idAtual()}`, { method: "DELETE" });
       if (!r.ok) throw new Error("HTTP " + r.status);
       return true;
     },
 
-    /* ---------- cidades (para a Região Principal) ---------- */
+    /* ---------- CADASTRO (CREATE) ---------- */
+    async criarUsuario({ nome, email, senha }) {
+      // novos usuários nascem comuns (admin: false)
+      const r = await fetch(`${API}/usuarios`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, senha, admin: false }),
+      });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    },
+    // verifica se já existe alguém com este e-mail (evita duplicado)
+    async emailExiste(email) {
+      const r = await fetch(`${API}/usuarios?email=${encodeURIComponent(email)}`);
+      if (!r.ok) return false;
+      const lista = await r.json();
+      return Array.isArray(lista) && lista.length > 0;
+    },
+
+    /* ---------- LOGIN (autenticação) ---------- */
+    async autenticar(email, senha) {
+      const r = await fetch(
+        `${API}/usuarios?email=${encodeURIComponent(email)}&senha=${encodeURIComponent(senha)}`
+      );
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      const lista = await r.json();
+      return Array.isArray(lista) && lista.length ? lista[0] : null;
+    },
+
+    /* ---------- cidades (Região Principal) ---------- */
     async obterCidades() {
       try {
         const r = await fetch(`${API}/cidades`);
         if (!r.ok) throw new Error("HTTP " + r.status);
         return await r.json();
       } catch (e) {
-        // fallback caso o servidor esteja fora
         return [
           { id: "1", Nome: "Belo Horizonte" },
           { id: "0", Nome: "Contagem" },

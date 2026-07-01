@@ -116,8 +116,17 @@
   "usuarios": [
     {
       "id": "927202",
-      "nome": "Usuário Exemplo",
-      "email": "usuario@email.com"
+      "nome": "Ferlanio",
+      "email": "admin@alertaja.com",
+      "senha": "admin123",
+      "admin": true
+    },
+    {
+      "id": "100",
+      "nome": "Cidadão Exemplo",
+      "email": "user@alertaja.com",
+      "senha": "user123",
+      "admin": false
     }
   ],
   "configuracoesUsuario": [

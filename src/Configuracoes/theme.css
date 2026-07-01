@@ -74,3 +74,77 @@
   color: var(--aj-text);
   border: 1px solid var(--aj-border);
 }
+[data-theme="dark"] #PesquisaCidade::placeholder { color: var(--aj-text-muted); opacity: 1; }
+
+/* Botões azul-escuro (baixo contraste no dark) → azul mais claro */
+[data-theme="dark"] .btn-custom,
+[data-theme="dark"] .BotaoTemperatura,
+[data-theme="dark"] .BotaoUmidade { background: var(--aj-azul-hover); color: var(--aj-header-text); }
+[data-theme="dark"] .btn-custom:hover,
+[data-theme="dark"] .BotaoTemperatura:hover,
+[data-theme="dark"] .BotaoUmidade:hover { background: var(--aj-heading); color: #0f1c2e; }
+[data-theme="dark"] #BotaoPesquisarCidade { background: var(--aj-azul-hover) !important; color: var(--aj-header-text) !important; border: 1px solid var(--aj-border) !important; }
+[data-theme="dark"] .carousel-caption { background: rgba(0, 0, 0, .65); }
+
+/* Modal do gráfico de temperatura (Bootstrap) */
+[data-theme="dark"] #GraficoTemperatura .modal-content { background: var(--aj-surface); color: var(--aj-text); border: 1px solid var(--aj-border); }
+[data-theme="dark"] #GraficoTemperatura .modal-header { border-bottom-color: var(--aj-border); }
+[data-theme="dark"] #GraficoTemperatura #TituloCidadeGrafico,
+[data-theme="dark"] #GraficoTemperatura #MensagemHistorico { color: var(--aj-heading); }
+
+/* Inputs nativos escuros (date pickers, selects do SO) em toda a solução */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea { color-scheme: dark; }
+
+/* =====================================================================
+   PONTES DO TEMA ESCURO — HISTÓRICO (Dan)
+===================================================================== */
+[data-theme="dark"] .titulo-pagina,
+[data-theme="dark"] aside h2:first-child,
+[data-theme="dark"] aside h3,
+[data-theme="dark"] .titulo-estatisticas { color: var(--aj-heading); }
+[data-theme="dark"] aside { background: var(--aj-surface); border-right-color: var(--aj-border); }
+[data-theme="dark"] .filtro-item label { color: var(--aj-text); }
+[data-theme="dark"] .grupo-filtro { border-bottom-color: var(--aj-border); }
+[data-theme="dark"] .card-estatistica,
+[data-theme="dark"] .card-alerta,
+[data-theme="dark"] .modal-conteudo { background: var(--aj-surface); }
+[data-theme="dark"] .card-alerta p { color: var(--aj-text-muted); }
+[data-theme="dark"] .busca input,
+[data-theme="dark"] .filtro-item input[type="date"],
+[data-theme="dark"] .filtro-item select { background: var(--aj-surface-2); color: var(--aj-text); border-color: var(--aj-border); }
+
+/* =====================================================================
+   PONTES DO TEMA ESCURO — CADASTRO DE ALERTAS (Rafael)
+   O CSS dele usa variáveis; redefinimos as neutras no escuro.
+===================================================================== */
+html[data-theme="dark"] {
+  --fundo: #121212;
+  --branco: #1e1e1e;
+  --texto: #e8e8e8;
+  --texto-secundario: #b6b6b6;
+  --borda: #333333;
+}
+[data-theme="dark"] .cabecalho h1,
+[data-theme="dark"] .titulo-lista h2,
+[data-theme="dark"] .alerta h3,
+[data-theme="dark"] .card-cadastro label { color: var(--aj-heading); }
+[data-theme="dark"] .card-cadastro input,
+[data-theme="dark"] .card-cadastro select,
+[data-theme="dark"] .card-cadastro textarea { background: var(--aj-surface-2); color: var(--aj-text); }
+[data-theme="dark"] .alertas-cadastrados { background: var(--aj-surface); }
+[data-theme="dark"] .alerta { background: var(--aj-surface-2); }
+[data-theme="dark"] .alerta p { color: var(--aj-text-muted); }
+
+/* =====================================================================
+   PONTES DO TEMA ESCURO — NOTÍCIAS (Tiago) e detalhes.html
+   (.section-title/.news-card/.news-title já cobertos acima — classes compartilhadas)
+===================================================================== */
+[data-theme="dark"] .featured-card,
+[data-theme="dark"] .card-noticia { background: var(--aj-surface); }
+[data-theme="dark"] .featured-title { color: var(--aj-heading); }
+[data-theme="dark"] .featured-text,
+[data-theme="dark"] .news-text,
+[data-theme="dark"] .texto-materia { color: var(--aj-text-muted); }
+[data-theme="dark"] .navbar-custom .nav-link { color: #ffffff !important; }
