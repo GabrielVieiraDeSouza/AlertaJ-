@@ -58,12 +58,12 @@
       <div class="aj-sb-body">
         <div class="aj-item">
           <label for="aj-notif">🔔 Notificações de Alerta</label>
-          <span class="aj-switch"><input type="checkbox" id="aj-notif"><span class="slider"></span></span>
+          <label class="aj-switch"><input type="checkbox" id="aj-notif"><span class="slider"></span></label>
         </div>
 
         <div class="aj-item">
           <label for="aj-tema">🌙 Tema Escuro</label>
-          <span class="aj-switch"><input type="checkbox" id="aj-tema"><span class="slider"></span></span>
+          <label class="aj-switch"><input type="checkbox" id="aj-tema"><span class="slider"></span></label>
         </div>
 
         <div class="aj-item coluna">
