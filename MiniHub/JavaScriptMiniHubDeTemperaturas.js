@@ -321,7 +321,7 @@ async function PegarDadosClimaticos(Cidade) {
 }
 
 async function PegarCoordernadasgeocoding(Cidade) {
-    const Resultados = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${Cidade}&limit=5&appid=15ee17bcb2deda2323ebee3856ede172`)
+    const Resultados = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${Cidade}&limit=5&appid=15ee17bcb2deda2323ebee3856ede172`)
     const data = await Resultados.json();
     return [data[0].lat, data[0].lon];
 }
