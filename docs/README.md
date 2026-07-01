@@ -37,7 +37,7 @@
 
 ## 1.1. Problema
 
-Desastres naturais como **chuvas intensas, enchentes e deslizamentos** atingem com frequência a região metropolitana de Belo Horizonte e Contagem, causando perdas materiais e colocando vidas em risco. Nesses momentos, as pessoas que moram em **áreas de risco** enfrentam um problema recorrente: **a falta de informação clara, confiável e no momento certo**.
+Desastres naturais como **chuvas intensas, enchentes e deslizamentos** atingem com frequência **Minas Gerais**, causando perdas materiais e colocando vidas em risco. Nesses momentos, as pessoas que moram em **áreas de risco** enfrentam um problema recorrente: **a falta de informação clara, confiável e no momento certo**.
 
 As informações costumam chegar de forma **fragmentada, confusa ou tardia**, muitas vezes misturadas a **notícias falsas (fake news)** e a **termos técnicos** difíceis de entender. O resultado é a **dúvida na hora de decidir**: sair de casa ou ficar? Para onde ir? O que já aconteceu na minha região?
 
@@ -79,7 +79,7 @@ Durante a fase de Estratégia, o grupo aplicou técnicas de **Design Thinking** 
 
 | Certezas | Suposições | Dúvidas |
 |---|---|---|
-| Desastres naturais são recorrentes na região de BH/Contagem. | O usuário prefere linguagem simples a termos técnicos. | Qual o canal ideal de alerta (site, app, notificação)? |
+| Desastres naturais são recorrentes em Minas Gerais. | O usuário prefere linguagem simples a termos técnicos. | Qual o canal ideal de alerta (site, app, notificação)? |
 | A informação hoje é confusa, dispersa e às vezes tardia. | A personalização por região aumenta o engajamento. | Com que frequência o usuário consultaria a plataforma? |
 | Existe demanda por uma fonte centralizada e confiável. | Fake news atrapalham a decisão em emergências. | Quem deve poder cadastrar/validar os alertas? |
 
