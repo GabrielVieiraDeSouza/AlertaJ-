@@ -1,0 +1,44 @@
+{
+  "relatoriosClimaticos": [
+    {
+      "id": 1,
+      "cidade": "Contagem",
+      "data": "2026-05-15",
+      "temperatura": "29°C",
+      "umidade": "78%",
+      "chanceChuva": "85%",
+      "vento": "22 km/h",
+      "qualidadeAr": "Boa",
+      "alertas": [
+        "Risco de alagamento",
+        "Chuvas fortes durante a noite"
+      ]
+    },
+    {
+      "id": 2,
+      "cidade": "Sabará",
+      "data": "2026-05-16",
+      "temperatura": "27°C",
+      "umidade": "70%",
+      "chanceChuva": "65%",
+      "vento": "18 km/h",
+      "qualidadeAr": "Moderada",
+      "alertas": [
+        "Possibilidade de tempestade"
+      ]
+    },
+    {
+      "id": 3,
+      "cidade": "Belo Horizonte",
+      "data": "2026-06-06",
+      "temperatura": "28°C",
+      "umidade": "70%",
+      "chanceChuva": "60%",
+      "vento": "15 km/h",
+      "qualidadeAr": "Boa",
+      "alertas": [
+        "Possibilidade de chuva forte"
+      ]
+    }
+  ]
+}
