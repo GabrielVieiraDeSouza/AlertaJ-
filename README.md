@@ -10,8 +10,11 @@ Trabalho Interdisciplinar - Aplicacões Web
 ## Participantes
 
 Os membros do grupo são: 
-- Fulano da Silva
-- Ciclano Albuquerque
+- Dan Lucca Angotti Duarte
+- Ferlanio Jose Duarte Nascimento
+- Gabriel Vieira de Souza
+- Rafael Almeida Ferreira
+- Tiago Malta Leão
 
 > Inclua a lista dos membros da equipe com seus nomes completos.
 
