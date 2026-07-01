@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>/* anti-flash tema (Ferlanio) */(function(){try{var c=JSON.parse(localStorage.getItem('alertaJa_config'));if(c&&c.temaEscuro){document.documentElement.setAttribute('data-theme','dark');document.documentElement.setAttribute('data-bs-theme','dark');}}catch(e){}})();</script>
+    <link rel="stylesheet" href="style.css">
+    <!-- Tema global + Sidebar (Ferlanio) -->
+    <link rel="stylesheet" href="../Configuracoes/theme.css">
+    <link rel="stylesheet" href="../Configuracoes/sidebar.css">
+    <script src="../Configuracoes/config-api.js"></script>
+    <script src="../Configuracoes/sidebar.js"></script>
+    <title>Histórico de Alertas</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+
+    <div class="logo-area">
+
+    <a href="index.html">
+        <img src="../docs/images/alertaja.png" alt="Logo Alerta Já">
+    </a>
+
+</div>
+
+    <nav>
+        <a href="../index.html">Início</a>
+        <a href="#">Alertas</a>
+        <a href="#">Histórico</a>
+        <a href="#">Configurações</a>
+    </nav>
+
+</header>
+
+<!-- MENU LATERAL -->
+
+<main>
+
+<aside>
+
+    <h2>FILTROS</h2>
+
+    <h3>Tipo de risco</h3>
+
+<div class="grupo-filtro" id="grupo-filtro-tipos">
+    
+    <div class="filtro-item">
+        <input type="checkbox" id="chuva">
+        <label for="chuva">Chuva Forte</label>
+    </div>
+
+    <div class="filtro-item">
+        <input type="checkbox" id="enchente">
+        <label for="enchente">Enchente</label>
+    </div>
+
+    <div class="filtro-item">
+        <input type="checkbox" id="deslizamento">
+        <label for="deslizamento">Deslizamento</label>
+    </div>
+
+    <div class="filtro-item">
+        <input type="checkbox" id="seca">
+        <label for="seca">Seca</label>
+    </div>
+
+    <div class="filtro-item">
+        <input type="checkbox" id="tempestade">
+        <label for="tempestade">Tempestade</label>
+    </div>
+
+</div>
+
+<h3>Período</h3>
+<div class="grupo-filtro">
+<div class="filtro-data">
+    <label for="data-inicio">início:</label>
+    <input type="date" id="data-inicio">
+</div>
+
+<div class="filtro-data">
+    <label for="data-fim">Fim:</label>
+    <input type="date" id="data-fim">
+</div>
+</div>
+
+<h3>Nível de risco</h3>
+<div class="grupo-filtro">
+<div class="filtro-item">
+    
+    <select id="filtro-risco">
+        <option value="">Todos</option>
+        <option value="alto">Alto</option>
+        <option value="medio">Médio</option>
+        <option value="baixo">Baixo</option>
+    </select>
+</div>
+</div>
+
+<h2 class="titulo-estatisticas">
+    📊 Estatísticas do Histórico
+</h2>
+
+<!-- ESTATISTICAS DE ALERTAS -->
+
+<div class="estatisticas">
+
+    <div class="card-estatistica">
+        <strong>Total:</strong>
+        <span id="total-alertas">0</span>
+    </div>
+
+    <div class="card-estatistica">
+        <strong>Alto:</strong>
+        <span id="total-alto">0</span>
+    </div>
+
+    <div class="card-estatistica">
+        <strong>Médio:</strong>
+        <span id="total-medio">0</span>
+    </div>
+
+    <div class="card-estatistica">
+        <strong>Baixo:</strong>
+        <span id="total-baixo">0</span>
+    </div>
+
+</div>
+
+</aside>
+
+
+ <!-- CONTEÚDO PRINCIPAL -->
+    <section>
+
+        <h2 class="titulo-pagina">📍 Histórico de Informações por Local</h2>
+
+        <div class="busca">
+
+    <input type="text" id="campo-busca" placeholder="Buscar cidade ou bairro">
+
+    <button id="botao-busca">Pesquisar</button>
+
+</div>
+
+
+<div id="lista-alertas"></div>
+
+    </section>
+
+
+</main>
+
+
+<div id="modal" class="modal">
+
+    <div class="modal-conteudo">
+
+        <span id="fechar-modal">&times;</span>
+
+        <div id="conteudo-modal"></div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

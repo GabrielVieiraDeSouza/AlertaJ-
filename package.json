@@ -1,0 +1,5 @@
+{
+  "scripts": { "start": "json-server db.json -p ${PORT:-3000} -h 0.0.0.0" }, "dependencies": {
+    "json-server": "^1.0.0-beta.15"
+  }
+}
