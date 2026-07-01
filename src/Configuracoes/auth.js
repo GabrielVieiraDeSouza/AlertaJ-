@@ -40,22 +40,23 @@
     /* GUARD: exige usuário logado (qualquer um) */
     exigirLogin(urlLogin) {
       if (!this.estaLogado()) {
-        window.location.href = urlLogin || "login.html";
+        window.location.replace(urlLogin || "login.html");
         return false;
       }
       return true;
     },
 
-    /* GUARD: exige usuário ADMIN. Não-admin volta para a home. */
+    /* GUARD: exige usuário ADMIN.
+       Sem sessão -> vai para o login; logado mas não-admin -> volta para a home.
+       Usa location.replace para o guard não ficar no histórico (botão Voltar). */
     exigirAdmin(urlLogin, urlHome) {
       const s = this.getSessao();
       if (!s) {
-        window.location.href = urlLogin || "login.html";
+        window.location.replace(urlLogin || "login.html");
         return false;
       }
       if (!s.admin) {
-        alert("Acesso restrito: somente administradores podem cadastrar alertas.");
-        window.location.href = urlHome || "../index.html";
+        window.location.replace(urlHome || "../index.html");
         return false;
       }
       return true;

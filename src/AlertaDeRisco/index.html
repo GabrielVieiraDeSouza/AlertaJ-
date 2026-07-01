@@ -9,6 +9,11 @@
 
     <script>/* anti-flash tema (Ferlanio) */(function(){try{var c=JSON.parse(localStorage.getItem('alertaJa_config'));if(c&&c.temaEscuro){document.documentElement.setAttribute('data-theme','dark');document.documentElement.setAttribute('data-bs-theme','dark');}}catch(e){}})();</script>
 
+    <!-- GUARD DE ACESSO: somente ADMIN acessa esta página (parte do Ferlanio) -->
+    <!-- Lê a sessão no localStorage; se não for admin, redireciona antes de renderizar. -->
+    <script src="../Configuracoes/auth.js"></script>
+    <script>exigirAdmin("../Configuracoes/login.html", "../index.html");</script>
+
     <link rel="stylesheet" href="style.css">
     <!-- Tema global + Sidebar (Ferlanio) -->
     <link rel="stylesheet" href="../Configuracoes/theme.css">
