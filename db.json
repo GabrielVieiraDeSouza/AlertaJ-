@@ -120,6 +120,13 @@
       "senha": "aaaa",
       "admin": false,
       "id": "quBqfaSJlyI"
+    },
+    {
+      "email": "admin@alertaja.com",
+      "admin": true,
+      "nome": "Administrador",
+      "id": "admin123",
+      "senha": "admin"
     }
   ],
   "configuracoesUsuario": [
@@ -343,22 +350,6 @@
       "criadoEm": "2026-06-28T16:10:00.000Z",
       "imagem": "",
       "fonte": "Cadastro Manual"
-    },
-    {
-      "titulo": "a",
-      "cidade": "Betim",
-      "nivel": "Baixo",
-      "descricao": "Enche",
-      "data": "2026-06-11",
-      "id": "VAghV-hPWOQ"
-    },
-    {
-      "titulo": "Teste",
-      "cidade": "a",
-      "nivel": "Baixo",
-      "descricao": "a",
-      "data": "2026-06-04",
-      "id": "lC9VG8E639I"
     }
   ],
   "clima": [

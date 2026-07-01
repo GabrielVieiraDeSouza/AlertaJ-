@@ -1,6 +1,6 @@
 let idEditando = null;
 
-const API_URL = "https://alerta-ja-api.onrender.com/alertas";
+const API_URL = "http://localhost:3000/alertas";
 
 const form = document.getElementById("formAlerta");
 
